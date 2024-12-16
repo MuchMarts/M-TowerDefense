@@ -3,21 +3,22 @@ using UnityEngine;
 
 public class DamageRing : BaseRing
 {
-    private float fdamage = 10f;
+    private float fDamage = 10f;
+    private RingEffectType ringEffectType = RingEffectType.fDamage;
     private float adjacencyBonus = 100f;
 
     private float Damage() 
     {
-        float adjBonusDamage = (AdjacenctCount() * fdamage * adjacencyBonus/100);
-        Debug.Log("Damage: " + fdamage + " Adjacency: " + AdjacenctCount() + " Bonus: " + adjacencyBonus/100 + "AdjBonusDamage: " + adjBonusDamage);
-        return fdamage + adjBonusDamage;
+        float adjBonusDamage = (AdjacenctCount() * fDamage * adjacencyBonus/100);
+        Debug.Log("Damage: " + fDamage + " Adjacency: " + AdjacenctCount() + " Bonus: " + adjacencyBonus/100 + "AdjBonusDamage: " + adjBonusDamage);
+        return fDamage + adjBonusDamage;
     }
 
     public override Dictionary<RingEffectType, object> GetEffect()
     { 
         Dictionary<RingEffectType, object> ability = new Dictionary<RingEffectType, object>
         {
-            { RingEffectType.pDamage, Damage() },
+            { ringEffectType, Damage() },
         };
         return ability;
     }

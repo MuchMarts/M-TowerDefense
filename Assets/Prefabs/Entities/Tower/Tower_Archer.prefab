@@ -226,7 +226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileObject: {fileID: 4168489110273282410, guid: c4a80b62078f4684db56c5f185d9f269, type: 3}
   firePoint: {fileID: 6493837537092930240}
-  range: 15
+  baseRange: 3
   baseAttackSpeed: 1
   turnSpeed: 10
   priority: 2
