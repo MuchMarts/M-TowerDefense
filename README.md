@@ -3,21 +3,25 @@
 ### What is implemented:
 
 - Towers
-Storing Rings
-Moving Rings
+
+Storing Rings  
+Moving Rings  
 Getting Ring abilities
 
 - Tower Turret
-Detect enemies
-Rotate turret
+
+Detect enemies  
+Rotate turret  
 Targeting priorities (First, Last, Closest)
 
 - Rings
-Calculate Adjacent rings of same time
+
+Calculate Adjacent rings of same time  
 Tell tower what type it is
 
 - Enemy
-Move along path
+
+Move along path  
 Spawn enemies based on a simple wave system
 
 
