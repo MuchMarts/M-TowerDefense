@@ -23,17 +23,17 @@ Spawn enemies based on a simple wave system
 
 ### To-Do
 
-[ ] Basic UI
-[ ] Economy
-[ ] Better Wave system
-[ ] Levels
-[ ] Different types of **Projectiles**
-[ ] Different types of **Enemies**
-[ ] Different types of **Towers**
-[ ] Different types of **Rings**
+- [ ] Basic UI
+- [ ] Economy
+- [ ] Better Wave system
+- [ ] Levels
+- [ ] Different types of **Projectiles**
+- [ ] Different types of **Enemies**
+- [ ] Different types of **Towers**
+- [ ] Different types of **Rings**
 
 ------
 Stretch Goals
-------
-[ ] Custom Map Editor
-[ ] Gamemodes
+
+- [ ] Custom Map Editor
+- [ ] Gamemodes
