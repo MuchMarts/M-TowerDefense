@@ -9,7 +9,7 @@ public class DamageRing : BaseRing
 
     private float Damage() 
     {
-        float adjBonusDamage = (AdjacenctCount() * fDamage * adjacencyBonus/100);
+        float adjBonusDamage = AdjacenctCount() * fDamage * adjacencyBonus/100;
         Debug.Log("Damage: " + fDamage + " Adjacency: " + AdjacenctCount() + " Bonus: " + adjacencyBonus/100 + "AdjBonusDamage: " + adjBonusDamage);
         return fDamage + adjBonusDamage;
     }

@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BaseProjectile : MonoBehaviour
@@ -74,22 +76,45 @@ public class BaseProjectile : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void SetRingEffects(RingEffects rEffect)
+    internal void SetModifier(ProjectileModifier projectileModifier)
     {
+        if (projectileModifier == null) return;
+        damage = projectileModifier.damage;
+        pierce = projectileModifier.pierce;
+        speed = projectileModifier.speed;
+    }
+}
 
-        if (rEffect != null)
-        {
-            if (rEffect.pierce > 0)
-            {
-                pierce += rEffect.pierce;
-            }
-            if (rEffect.damage > 0)
-            {
-                Debug.Log("Adding rEffect Damage");
-                Debug.Log("Damage: " + damage + " Ring Damage: " + rEffect.damage);
-                damage += rEffect.damage;
-                Debug.Log("Damage: " + damage);
-            }
-        }
+public class ProjectileModifier
+{
+    public float damage;
+    public int pierce;
+    public float speed;
+    
+    private float baseDamage;
+    private int basePierce;
+    private float baseSpeed;
+
+
+    public ProjectileModifier(float _damage, int _pierce, float _speed)
+    {
+        damage = _damage;
+        pierce = _pierce;
+        speed = _speed;
+
+        baseDamage = _damage;
+        basePierce = _pierce;
+        baseSpeed = _speed;
+    }
+
+    public void UpdateProjectile(BaseProjectile proj)
+    {
+        damage += proj.baseDamage - baseDamage;
+        pierce += proj.basePierce - basePierce;
+        speed += proj.baseSpeed - baseSpeed;
+
+        baseDamage = proj.baseDamage;
+        basePierce = proj.basePierce;
+        baseSpeed = proj.baseSpeed;
     }
 }

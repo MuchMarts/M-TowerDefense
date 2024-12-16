@@ -8,7 +8,7 @@ public class SpeedRing : BaseRing
 
     private float AttackSpeed() 
     {
-        float adjAttackSpeed = (AdjacenctCount() * (pAttackSpeed/100) * adjacencyBonus/100);
+        float adjAttackSpeed = AdjacenctCount() * (pAttackSpeed/100) * adjacencyBonus/100;
         return (pAttackSpeed + adjAttackSpeed) / 100;
     }
 

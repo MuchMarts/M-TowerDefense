@@ -6,21 +6,7 @@ public abstract class BaseRing : MonoBehaviour
 
     public int id { get; protected set; }
     protected List<GameObject> neighbourRings = new List<GameObject>();
-    public enum RingEffectType
-    {
-        // f = flat, p = percentage
-        fDamage,
-        pDamage,
-        Slow,
-        Pierce,
-        fRange,
-        pRange,
-        fFireRate,
-        pFireRate,
-        Projectile,
-        ProjectileSpeed,
-        RingReadManipulation,
-    }
+
     public void AddNeigbhourRing(GameObject ring)
     {
         // Skips Duplicates
@@ -50,3 +36,18 @@ public abstract class BaseRing : MonoBehaviour
     public abstract Dictionary<RingEffectType, object> GetEffect();
 }
 
+public enum RingEffectType
+    {
+        // f = flat, p = percentage
+        fDamage,
+        pDamage,
+        Slow,
+        Pierce,
+        fRange,
+        pRange,
+        fFireRate,
+        pFireRate,
+        Projectile,
+        ProjectileSpeed,
+        RingReadManipulation,
+    }

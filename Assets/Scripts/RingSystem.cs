@@ -149,7 +149,7 @@ public class RingSystem : MonoBehaviour
 
         if (ringOriginTowerBehaviour != null)
         {
-            towerBehaviour.AddRingFromTower(ringOriginTowerBehaviour, currentRing);
+            towerBehaviour.AddRing(currentRing, ringOriginTowerBehaviour);
             Debug.Log("Ring: " + currentRing.name + " added to tower: " + towerBehaviour.name + " at position: " + gridPos + " from tower: " + ringOriginTowerBehaviour.name);
         }
         else 

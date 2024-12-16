@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TowerRingManager : MonoBehaviour
 {
@@ -9,34 +10,32 @@ public class TowerRingManager : MonoBehaviour
     [SerializeField]
     private GameObject ringAnchor;
     
+    public UnityEvent RingStackChanged;
+
     private RingStack ringStack;
 
     public void Start()
     {
         ringStack = new RingStack(ringStackSize);
-        gameObject.name += " " + gameObject.GetInstanceID();
+        gameObject.name += "-" + gameObject.GetInstanceID();
     }
 
     // Public methods
-    public bool AddRing(GameObject ring)
+    public bool AddRing(GameObject ring, TowerRingManager tower = null)
     {
         bool success = ringStack.Add(ring);
-        if (success) TransforRingLocation(ring);
-        return success;
-    }
-
-    public bool AddRingFromTower(TowerRingManager tower, GameObject ring)
-    {
-        bool success = ringStack.Add(ring);
-        if (success) {
-            tower.RemoveTopRing();
+        if (success) 
+        {
+            if (tower != null) tower.RemoveTopRing();
             TransforRingLocation(ring);
         }
+        
         return success;
     }
 
     public GameObject RemoveTopRing()
     {
+        RingStackChanged.Invoke();
         return ringStack.Remove();
     }
 
@@ -57,65 +56,47 @@ public class TowerRingManager : MonoBehaviour
         ring.transform.localPosition = new Vector3(0, offset, 0);
     }
 
-    public RingEffects GetRingEffects()
+    public List<RingEffect> GetRingEffects()
     {
         if (ringStack.Count == 0) return null;
-        RingEffects ringEffects = new RingEffects();
+
+        List<RingEffect> ringEffects = new List<RingEffect>();
+
         for (int i = 0; i < ringStack.Count; i++)
         {
-            BaseRing ring = ringStack.Peek().GetComponent<BaseRing>();
+            GameObject ring = ringStack[i];
             
             if (ring == null) 
             {
-                Debug.LogError("Ring is null, TowerRingManager.cs, Object: " + gameObject.name);
+                Debug.LogError("Ring in stack is null, TowerRingManager.cs, Tower: " + gameObject.transform.name);
                 return null;
             }
 
-
-            foreach (KeyValuePair<BaseRing.RingEffectType, object> effect in ring.GetEffect())
-            {
-                switch (effect.Key)
-                {
-                    case BaseRing.RingEffectType.fDamage:
-                        ringEffects.damage += (float)effect.Value;
-                        break;
-                    case BaseRing.RingEffectType.pDamage:
-                        ringEffects.damage *= (float)effect.Value;
-                        break;
-                    default:
-                        Debug.LogError("Effect not implemented: " + effect.Key);
-                        break;
-                }
+            BaseRing baseRing = ring.GetComponent<BaseRing>();
+            // Skip if ring does not have a BaseRing component, should not happen
+            if (baseRing == null) {
+                Debug.LogError("BaseRing is null, TowerRingManager.cs, Tower: " + gameObject.transform.name);
+                continue;
             }
 
+            foreach (KeyValuePair<RingEffectType, object> effect in baseRing.GetEffect())
+            {
+                RingEffect ringEffect = new RingEffect();
+                ringEffect.ringEffectType = effect.Key;
+                ringEffect.effectValue = effect.Value;
+                ringEffects.Add(ringEffect);
+            }
         }
+
         return ringEffects;
     }
 }
 
-// RingEffects Holds all effects from rings calculated, that are then used in TurretManager
-// To apply the effects to the turret
-public class RingEffects 
+public class RingEffect
 {
-    public float damage;
-    public float slow;
-    public int pierce;
-    public float range;
-    public float fireRate;
-    public float projectileSpeed;
-    public GameObject projectile;
-
-    public RingEffects()
-    {
-        damage = 1;
-        slow = 0;
-        pierce = 0;
-        range = 1f;
-        fireRate = 1f;
-        projectileSpeed = 0;
-        projectile = null;
-    }
-
+    public RingEffectType ringEffectType;
+    public object effectValue;
+    public bool isUsed = false;
 }
 
 // Data Structure for RingStack
@@ -174,6 +155,11 @@ class RingStack {
     {
         if (index < 0) return null;
         return ringStack[index];
+    }
+
+    public GameObject this[int i]
+    {
+        get { return ringStack[i]; }
     }
 
     private void UpdateNeighbours()

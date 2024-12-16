@@ -1,15 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour
 {
-
     [Header("Wave Spawner Settings")]
     [SerializeField]
     private GameObject enemyPrefab;
     [SerializeField]
-
     private float timeBetweenWaves = 10f;
 
     private int waveNumber = 0;
@@ -41,6 +40,7 @@ public class WaveSpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        Instantiate(enemyPrefab, Waypoints.points[0].position, Quaternion.identity);
+        GameObject enemy = Instantiate(enemyPrefab, Waypoints.points[0].position, Quaternion.identity);
+        EnemyManager.Instance.RegisterEnemy(enemy);
     }
 }

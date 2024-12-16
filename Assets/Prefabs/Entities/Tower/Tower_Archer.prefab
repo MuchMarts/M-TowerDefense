@@ -79,6 +79,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ringStackSize: 3
   ringAnchor: {fileID: 7480057384944233025}
+  RingStackChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7480057384944233025
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,13 +227,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c76f0dda5fb2134b940b55c48bd4c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileObject: {fileID: 4168489110273282410, guid: c4a80b62078f4684db56c5f185d9f269, type: 3}
+  baseProjectile: {fileID: 4168489110273282410, guid: c4a80b62078f4684db56c5f185d9f269, type: 3}
   firePoint: {fileID: 6493837537092930240}
-  baseRange: 3
-  baseAttackSpeed: 1
   turnSpeed: 10
-  priority: 2
+  baseRange: 3
+  baseFireRate: 1
   target: 0
+  priority: 0
 --- !u!135 &5837144180046572950
 SphereCollider:
   m_ObjectHideFlags: 0
