@@ -10,6 +10,10 @@ public class EnemyMovement : MonoBehaviour
     private Transform target;
     private int waypointIndex = 0;
 
+    public int GetWaypointIndex()
+    {
+        return waypointIndex;
+    }
 
     void Start()
     {

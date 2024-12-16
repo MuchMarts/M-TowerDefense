@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4108251344415309274}
   - component: {fileID: 6217515203562163510}
-  - component: {fileID: 2839145409799924143}
-  - component: {fileID: 2746165969780437379}
   m_Layer: 6
   m_Name: Tower_Archer
   m_TagString: Untagged
@@ -50,44 +48,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ringStackSize: 3
   ringAnchor: {fileID: 7480057384944233025}
---- !u!114 &2839145409799924143
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4023363838936799524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c76f0dda5fb2134b940b55c48bd4c5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  towerTurret: {fileID: 1604271919701136716}
-  projectilePrefab: {fileID: 0}
-  range: 3
-  baseAttackSpeed: 1
-  rangeCollider: {fileID: 2746165969780437379}
---- !u!135 &2746165969780437379
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4023363838936799524}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 10
-  m_Center: {x: 0.5, y: 0.5, z: 0.5}
 --- !u!1 &7480057384944233025
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,7 +141,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6130528455657144778, guid: fd3fff328c131ef498d33b37d71ba54d, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -4592182587349379217, guid: fd3fff328c131ef498d33b37d71ba54d, type: 3}
       propertyPath: m_Layer
@@ -195,6 +155,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5978369120842674423, guid: fd3fff328c131ef498d33b37d71ba54d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -204,15 +168,35 @@ PrefabInstance:
       addedObject: {fileID: 3417006801049773852}
     - targetCorrespondingSourceObject: {fileID: -6130528455657144778, guid: fd3fff328c131ef498d33b37d71ba54d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3266144598255894373}
+      addedObject: {fileID: 3390287898265404761}
+    - targetCorrespondingSourceObject: {fileID: -6130528455657144778, guid: fd3fff328c131ef498d33b37d71ba54d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5837144180046572950}
   m_SourcePrefab: {fileID: 100100000, guid: fd3fff328c131ef498d33b37d71ba54d, type: 3}
 --- !u!1 &1604271919701136716 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6130528455657144778, guid: fd3fff328c131ef498d33b37d71ba54d, type: 3}
   m_PrefabInstance: {fileID: 4370875474579696506}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &3266144598255894373
-BoxCollider:
+--- !u!114 &3390287898265404761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604271919701136716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c76f0dda5fb2134b940b55c48bd4c5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileObject: {fileID: 0}
+  range: 3
+  baseAttackSpeed: 1
+  turnSpeed: 10
+  priority: 2
+--- !u!135 &5837144180046572950
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -226,12 +210,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.1853127, y: 1.9217054, z: 2.1245866}
-  m_Center: {x: 0.00000011920929, y: 0.9608522, z: -0.00000011920929}
+  m_Radius: 0.00001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3488338936928343595 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: fd3fff328c131ef498d33b37d71ba54d, type: 3}
