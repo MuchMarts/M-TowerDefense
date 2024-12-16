@@ -3,24 +3,21 @@ using UnityEngine;
 
 public class DamageRing : BaseRing
 {
-    [SerializeField]
-    private int damage = 10;
-    [SerializeField]
-    private int attackSpeed = 90;
-    [SerializeField]
-    private int adjacencyBonus = 100;
+    private float fdamage = 10f;
+    private float adjacencyBonus = 100f;
 
-    private int Damage() 
+    private float Damage() 
     {
-        return damage + (AdjacenctCount() * damage * adjacencyBonus/100);
+        float adjBonusDamage = (AdjacenctCount() * fdamage * adjacencyBonus/100);
+        Debug.Log("Damage: " + fdamage + " Adjacency: " + AdjacenctCount() + " Bonus: " + adjacencyBonus/100 + "AdjBonusDamage: " + adjBonusDamage);
+        return fdamage + adjBonusDamage;
     }
 
-    public override Dictionary<string,object> GetAbility()
+    public override Dictionary<RingEffectType, object> GetEffect()
     { 
-        Dictionary<string, object> ability = new Dictionary<string, object>
+        Dictionary<RingEffectType, object> ability = new Dictionary<RingEffectType, object>
         {
-            { "damage", Damage() },
-            { "attackSpeed", attackSpeed }
+            { RingEffectType.pDamage, Damage() },
         };
         return ability;
     }

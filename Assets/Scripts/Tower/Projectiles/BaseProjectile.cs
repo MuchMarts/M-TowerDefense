@@ -1,14 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BaseProjectile : MonoBehaviour
 {
     private Vector3 target;
 
-    public float speed = 70f;
-    public int pierce = 1;
-    public float damage = 1f;
+    public float baseSpeed = 70f;
+    public int basePierce = 1;
+    public float baseDamage = 1f;
+
+    private float damage;
+    private int pierce;
+    private float speed;
+
+    void Awake()
+    {
+        damage = baseDamage;
+        pierce = basePierce;
+        speed = baseSpeed;
+    }
+
     public void Seek(Transform _target)
     {
         target = _target.position;
@@ -16,7 +26,6 @@ public class BaseProjectile : MonoBehaviour
 
     void OnTriggerEnter(Collider c)
     {
-        Debug.Log("Projectile hit something: " + c.name);
         if (c.CompareTag("Enemy"))
         {
             HitTarget(c);
@@ -26,13 +35,15 @@ public class BaseProjectile : MonoBehaviour
 
     void HitTarget(Collider c)
     {
-        pierce--;
-        Debug.Log("Projectile hit target: " + c.name);
-        c.GetComponent<Damageable>().TakeDamage(damage);
         if (pierce <= 0)
         {
             DestroyProjectile();
+        } else {
+            Debug.Log("Pierce: " + pierce + " Damage: " + damage);
+            c.GetComponent<Damageable>().TakeDamage(damage);
+
         }
+        pierce--;
     }
 
     void Update()
@@ -48,7 +59,6 @@ public class BaseProjectile : MonoBehaviour
 
         if (direction.magnitude <= distanceThisFrame)
         {
-            Debug.Log("Projectile missed target");
             DestroyProjectile();
             return;
         }
@@ -62,5 +72,24 @@ public class BaseProjectile : MonoBehaviour
     private void DestroyProjectile()
     {
         Destroy(gameObject);
+    }
+
+    public void SetRingEffects(RingEffects rEffect)
+    {
+
+        if (rEffect != null)
+        {
+            if (rEffect.pierce > 0)
+            {
+                pierce += rEffect.pierce;
+            }
+            if (rEffect.damage > 0)
+            {
+                Debug.Log("Adding rEffect Damage");
+                Debug.Log("Damage: " + damage + " Ring Damage: " + rEffect.damage);
+                damage += rEffect.damage;
+                Debug.Log("Damage: " + damage);
+            }
+        }
     }
 }

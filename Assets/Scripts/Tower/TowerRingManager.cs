@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -55,6 +56,66 @@ public class TowerRingManager : MonoBehaviour
         float offset = ringStack.Count * 0.2f;
         ring.transform.localPosition = new Vector3(0, offset, 0);
     }
+
+    public RingEffects GetRingEffects()
+    {
+        if (ringStack.Count == 0) return null;
+        RingEffects ringEffects = new RingEffects();
+        for (int i = 0; i < ringStack.Count; i++)
+        {
+            BaseRing ring = ringStack.Peek().GetComponent<BaseRing>();
+            
+            if (ring == null) 
+            {
+                Debug.LogError("Ring is null, TowerRingManager.cs, Object: " + gameObject.name);
+                return null;
+            }
+
+
+            foreach (KeyValuePair<BaseRing.RingEffectType, object> effect in ring.GetEffect())
+            {
+                switch (effect.Key)
+                {
+                    case BaseRing.RingEffectType.fDamage:
+                        ringEffects.damage += (float)effect.Value;
+                        break;
+                    case BaseRing.RingEffectType.pDamage:
+                        ringEffects.damage *= (float)effect.Value;
+                        break;
+                    default:
+                        Debug.LogError("Effect not implemented: " + effect.Key);
+                        break;
+                }
+            }
+
+        }
+        return ringEffects;
+    }
+}
+
+// RingEffects Holds all effects from rings calculated, that are then used in TurretManager
+// To apply the effects to the turret
+public class RingEffects 
+{
+    public float damage;
+    public float slow;
+    public int pierce;
+    public float range;
+    public float fireRate;
+    public float projectileSpeed;
+    public GameObject projectile;
+
+    public RingEffects()
+    {
+        damage = 1;
+        slow = 0;
+        pierce = 0;
+        range = 1f;
+        fireRate = 1f;
+        projectileSpeed = 0;
+        projectile = null;
+    }
+
 }
 
 // Data Structure for RingStack

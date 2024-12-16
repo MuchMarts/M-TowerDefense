@@ -11,14 +11,17 @@ public class TurretManager : MonoBehaviour
     [SerializeField]
     private Transform firePoint;
     [SerializeField]
+    private float baseRange = 10f;
     private float range;
     [SerializeField]
     private float baseAttackSpeed = 1f;
+    private float attackSpeed;
+    private float attackCountdown = 0f;
+
     public float turnSpeed = 10f;
     private SphereCollider rangeCollider;
     private List<GameObject> inRangeTargets;
     private GameObject currentTarget;
-    private float attackCountdown = 0f;
     private enum targetPriority { First, Last, Closest };
     [SerializeField]
     private targetPriority priority = targetPriority.Closest;
@@ -28,7 +31,7 @@ public class TurretManager : MonoBehaviour
     private enum targetType { Enemy, Path};
     [SerializeField]
     private targetType target = targetType.Enemy;
-
+    private TowerRingManager ringManager;
 
 
     void Start()
@@ -36,7 +39,10 @@ public class TurretManager : MonoBehaviour
         inRangeTargets = new List<GameObject>();
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
         rangeCollider = GetComponent<SphereCollider>();
+        range = baseRange * 5;
         rangeCollider.radius = range;
+        attackSpeed = baseAttackSpeed;
+        ringManager = gameObject.GetComponentInParent<TowerRingManager>();
     }
 
     private GameObject FirstTarget()
@@ -191,16 +197,15 @@ public class TurretManager : MonoBehaviour
         float clampedZ = Mathf.Clamp(rotation.z, -20f, 20f);
 
         gameObject.transform.rotation = Quaternion.Euler(clampedX, rotation.y, clampedZ);
-
         if (attackCountdown <= 0f)
         {
             Debug.DrawRay(firePoint.position, direction, Color.blue);
             Debug.DrawRay(firePoint.position, currentTarget.transform.position - firePoint.position, Color.red);
 
-            if (Vector3.Angle(transform.forward, direction) < 10f) 
+            if (Vector3.Angle(transform.forward, direction) < 20f) 
             {
                 Shoot();
-                attackCountdown = 1f / baseAttackSpeed;
+                attackCountdown = 1f / attackSpeed;
             }
         }
 
@@ -209,13 +214,50 @@ public class TurretManager : MonoBehaviour
 
     void Shoot()
     {
-        GameObject projectile = Instantiate(projectileObject, firePoint.position, firePoint.rotation);
+        GameObject turretProjectile = projectileObject;
+        RingEffects ringEffect = null;
+        if (ringManager == null)
+        {
+            Debug.LogError("Ring Manager is null");
+        } else {
+            ringEffect = ringManager.GetRingEffects();
+        }
+
+        if (ringEffect != null && ringEffect.projectile != null)
+        {
+            turretProjectile = ringEffect.projectile;
+        }
+
+        GameObject projectile = Instantiate(turretProjectile, firePoint.position, firePoint.rotation);
         BaseProjectile projectileScript = projectile.GetComponent<BaseProjectile>();
         if (projectileScript == null)
         {
             Debug.LogError("Projectile script is null for projectile: " + projectile.name + " on turret: " + gameObject.name);
             Destroy(projectile);
             return;
+        }
+
+        if (ringEffect != null)
+        {
+            projectileScript.SetRingEffects(ringEffect);
+            // Should Be implemented in Update() of Turret, rather than here, but for now it works
+            // Current issue is that the ring effects are not applied to the turret until it shoots
+            if (ringEffect.fireRate > 0)
+            {
+                attackSpeed = ringEffect.fireRate;
+            } else {
+                attackSpeed = baseAttackSpeed;
+            }
+
+            if (ringEffect.range > 0)
+            {
+                range = ringEffect.range  * 5;
+                rangeCollider.radius = range;
+            } else {
+                range = baseRange  * 5;
+                rangeCollider.radius = range;
+            }
+
         }
 
         projectileScript.Seek(currentTarget.transform);
@@ -226,6 +268,6 @@ public class TurretManager : MonoBehaviour
     {
         // Offset the range indicator to the center of the tower
         Vector3 position = transform.position;
-        Gizmos.DrawWireSphere(position, range);
+        Gizmos.DrawWireSphere(position, baseRange);
     }    
 }

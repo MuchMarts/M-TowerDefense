@@ -152,3 +152,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80e83a586ce879b45ad3a34c8d7ebf1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackSpeed: 110
+  adjacencyBonus: 100

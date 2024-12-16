@@ -6,7 +6,21 @@ public abstract class BaseRing : MonoBehaviour
 
     public int id { get; protected set; }
     protected List<GameObject> neighbourRings = new List<GameObject>();
-
+    public enum RingEffectType
+    {
+        // f = flat, p = percentage
+        fDamage,
+        pDamage,
+        Slow,
+        Pierce,
+        fRange,
+        pRange,
+        fFireRate,
+        pFireRate,
+        Projectile,
+        ProjectileSpeed,
+        RingReadManipulation,
+    }
     public void AddNeigbhourRing(GameObject ring)
     {
         // Skips Duplicates
@@ -19,7 +33,7 @@ public abstract class BaseRing : MonoBehaviour
         for (int i = 0; i < neighbourRings.Count; i++)
         {
             // Compare self with neighbour rings, if the same type (same prefab) increment count
-            if (gameObject.GetComponent<BaseRing>() == neighbourRings[i].GetComponent<BaseRing>())
+            if (gameObject.GetComponent<BaseRing>().GetType() == neighbourRings[i].GetComponent<BaseRing>().GetType())
             {
                 count++;
             }
@@ -33,6 +47,6 @@ public abstract class BaseRing : MonoBehaviour
         neighbourRings.Remove(ring);
     }
 
-    public abstract Dictionary<string, object> GetAbility();
+    public abstract Dictionary<RingEffectType, object> GetEffect();
 }
 
