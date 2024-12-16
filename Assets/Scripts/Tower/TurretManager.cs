@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using UnityEngine;
 
 public class TurretManager : MonoBehaviour
@@ -8,7 +9,9 @@ public class TurretManager : MonoBehaviour
     [SerializeField]
     private GameObject projectileObject;
     [SerializeField]
-    private float range = 15f;
+    private Transform firePoint;
+    [SerializeField]
+    private float range;
     [SerializeField]
     private float baseAttackSpeed = 1f;
     public float turnSpeed = 10f;
@@ -19,6 +22,7 @@ public class TurretManager : MonoBehaviour
     private enum targetPriority { First, Last, Closest };
     [SerializeField]
     private targetPriority priority = targetPriority.Closest;
+
     // Idea: Add a target type to the turret, so it can target enemies or path points
     // Imagine a tower that lays mines or spikes on the path
     private enum targetType { Enemy, Path};
@@ -42,6 +46,12 @@ public class TurretManager : MonoBehaviour
         GameObject firstestTarget = null;
         for (int i = 0; i < inRangeTargets.Count; i++)
         {
+            if (inRangeTargets[i] == null) 
+            {
+                inRangeTargets.RemoveAt(i);
+                return null;
+            }
+            
             int waypointIndex = inRangeTargets[i].GetComponent<EnemyMovement>().GetWaypointIndex();
             
             // Break out, if the target is at the first waypoint
@@ -77,6 +87,12 @@ public class TurretManager : MonoBehaviour
         GameObject lastestTarget = null;
         for (int i = 0; i < inRangeTargets.Count; i++)
         {
+            if (inRangeTargets[i] == null) 
+            {
+                inRangeTargets.RemoveAt(i);
+                return null;
+            }
+
             int waypointIndex = inRangeTargets[i].GetComponent<EnemyMovement>().GetWaypointIndex();
             
             if (waypointIndex > highestWaypoinyIndex)
@@ -106,6 +122,12 @@ public class TurretManager : MonoBehaviour
 
         foreach (GameObject target in inRangeTargets)
         {
+            if (target == null) 
+            {
+                inRangeTargets.Remove(target);
+                return null;
+            }
+
             float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
             if (distanceToTarget < shortestDistance)
             {
@@ -156,18 +178,30 @@ public class TurretManager : MonoBehaviour
     {
         if (currentTarget == null)
         {
+            Quaternion targetRotation = Quaternion.Euler(0, gameObject.transform.rotation.eulerAngles.y, 0);
+            gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation, targetRotation, Time.deltaTime * turnSpeed);
             return;
         }
 
         Vector3 direction = currentTarget.transform.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(direction);
         Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
-        gameObject.transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+
+        float clampedX = Mathf.Clamp(rotation.x, -20f, 20f);
+        float clampedZ = Mathf.Clamp(rotation.z, -20f, 20f);
+
+        gameObject.transform.rotation = Quaternion.Euler(clampedX, rotation.y, clampedZ);
 
         if (attackCountdown <= 0f)
         {
-            Shoot();
-            attackCountdown = 1f / baseAttackSpeed;
+            Debug.DrawRay(firePoint.position, direction, Color.blue);
+            Debug.DrawRay(firePoint.position, currentTarget.transform.position - firePoint.position, Color.red);
+
+            if (Vector3.Angle(transform.forward, direction) < 10f) 
+            {
+                Shoot();
+                attackCountdown = 1f / baseAttackSpeed;
+            }
         }
 
         attackCountdown -= Time.deltaTime;
@@ -175,7 +209,17 @@ public class TurretManager : MonoBehaviour
 
     void Shoot()
     {
-        Debug.Log("Pew");
+        GameObject projectile = Instantiate(projectileObject, firePoint.position, firePoint.rotation);
+        BaseProjectile projectileScript = projectile.GetComponent<BaseProjectile>();
+        if (projectileScript == null)
+        {
+            Debug.LogError("Projectile script is null for projectile: " + projectile.name + " on turret: " + gameObject.name);
+            Destroy(projectile);
+            return;
+        }
+
+        projectileScript.Seek(currentTarget.transform);
+        currentTarget = null;
     }
 
     void OnDrawGizmosSelected()
