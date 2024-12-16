@@ -47,8 +47,6 @@ public class TurretManager : MonoBehaviour
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
         ringManager = gameObject.GetComponentInParent<TowerRingManager>();
         
-        ringManager.RingStackChanged.AddListener(OnRingStackChanged);
-
         if (ringManager == null)
         {
             Debug.LogError("Ring Manager is null, Tower: " + gameObject.transform.parent.name);
@@ -60,10 +58,12 @@ public class TurretManager : MonoBehaviour
     }
 
     // On RingeStackChange calculate the new projectile modifier
-    void OnRingStackChanged()
+    public void OnRingStackChanged()
     {
+        Debug.Log("Ring stack changed");
         List<RingEffect> ringEffects = ringManager.GetRingEffects();
         if (ringEffects == null) {
+            Debug.LogWarning("Ring effects are null");
             projectileModifier = null;
             return;
         }
@@ -107,6 +107,10 @@ public class TurretManager : MonoBehaviour
                     break;
               }
         }
+        if (projMod != null) 
+        {
+            Debug.Log("Projectile modifier created: " + projMod.damage + " " + projMod.pierce + " " + projMod.speed);
+        }
         projectileModifier = projMod;
     }
 
@@ -123,9 +127,16 @@ public class TurretManager : MonoBehaviour
         
         currentTarget = newTarget;
     }
-
+    private float timeToResetRotation = 3f;
+    private float countdownResetRotation = 0f;
     void ResetXZRotation()
     {
+        if (countdownResetRotation > 0f)
+        {
+            countdownResetRotation -= Time.deltaTime;
+            return;
+        }
+
         if (gameObject.transform.rotation.eulerAngles.x != 0 || gameObject.transform.rotation.eulerAngles.z != 0)
         {
             Quaternion targetRotation = Quaternion.Euler(0, gameObject.transform.rotation.eulerAngles.y, 0);
@@ -140,6 +151,7 @@ public class TurretManager : MonoBehaviour
             ResetXZRotation();
             return;
         }
+        countdownResetRotation = timeToResetRotation;
 
         Vector3 direction = currentTarget.transform.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(direction);

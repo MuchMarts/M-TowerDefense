@@ -26,6 +26,7 @@ public class TowerRingManager : MonoBehaviour
         bool success = ringStack.Add(ring);
         if (success) 
         {
+            RingStackChanged.Invoke();
             if (tower != null) tower.RemoveTopRing();
             TransforRingLocation(ring);
         }
@@ -58,7 +59,11 @@ public class TowerRingManager : MonoBehaviour
 
     public List<RingEffect> GetRingEffects()
     {
-        if (ringStack.Count == 0) return null;
+        if (ringStack.Count == 0)
+        {
+            Debug.LogWarning("Ring stack is empty, TowerRingManager.cs, Tower: " + gameObject.transform.name);
+            return null;
+        }
 
         List<RingEffect> ringEffects = new List<RingEffect>();
 

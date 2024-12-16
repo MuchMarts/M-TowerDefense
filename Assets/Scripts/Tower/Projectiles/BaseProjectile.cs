@@ -76,9 +76,12 @@ public class BaseProjectile : MonoBehaviour
         Destroy(gameObject);
     }
 
-    internal void SetModifier(ProjectileModifier projectileModifier)
+    public void SetModifier(ProjectileModifier projectileModifier)
     {
         if (projectileModifier == null) return;
+        Debug.Log("Setting modifier: " + projectileModifier.damage + " " + projectileModifier.pierce + " " + projectileModifier.speed);
+        Debug.Log("Current: " + damage + " " + pierce + " " + speed);
+        
         damage = projectileModifier.damage;
         pierce = projectileModifier.pierce;
         speed = projectileModifier.speed;
