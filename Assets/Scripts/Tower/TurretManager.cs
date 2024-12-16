@@ -22,7 +22,10 @@ public class TurretManager : MonoBehaviour
 
     [Header("Turret Attack Speed")]
     public float baseFireRate = 1f;
-    private float fireRate;
+    private float fireRate {
+        get { if (fireRate <= 0.1f) return 0.1f; return fireRate;}
+        set { fireRate = value; }
+    }
     private float attackCountdown = 0f;
     private float timeSinceLastShot = 0f;
 
