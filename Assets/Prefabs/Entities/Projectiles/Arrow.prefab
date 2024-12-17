@@ -46,13 +46,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc5a93608f03e1b4bbdaa1f736dfc897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 2
-  basePierce: 5
+  baseSpeed: 1
+  basePierce: 1
   baseDamage: 1
-  isHoming: 1
+  isHoming: 0
   homingRadius: 5
-  isTimed: 1
+  isTimed: 0
   timeToLive: 3
+  isSplash: 1
+  splashRadius: 10
 --- !u!65 &1264123688320202594
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -72,7 +72,7 @@ public class TurretManager : MonoBehaviour
             return;
         }
         // Projectile Modifier init values are based on turret base projectile
-        BaseProjectile projectile = baseProjectile.GetComponent<BaseProjectile>();
+        Projectile projectile = baseProjectile.GetComponent<Projectile>();
         ProjectileModifier projMod = new(projectile.baseDamage, projectile.basePierce, projectile.baseSpeed);
 
         for(int index = 0; index < ringEffects.Count; index++)
@@ -104,7 +104,7 @@ public class TurretManager : MonoBehaviour
                     break;
                 case RingEffectType.Projectile:
                     currentProjectile = (GameObject)effect.effectValue;
-                    projMod.UpdateProjectile(currentProjectile.GetComponent<BaseProjectile>());
+                    projMod.UpdateProjectile(currentProjectile.GetComponent<Projectile>());
                     break;
                 default:
                     Debug.LogWarning("Ring effect not implemented: " + effect.ringEffectType);
@@ -199,7 +199,7 @@ public class TurretManager : MonoBehaviour
         timeSinceLastShot = 0f;
 
         GameObject projectile = Instantiate(currentProjectile, firePoint.position, firePoint.rotation);
-        BaseProjectile projectileScript = projectile.GetComponent<BaseProjectile>();
+        Projectile projectileScript = projectile.GetComponent<Projectile>();
         
         if (projectileScript == null)
         {

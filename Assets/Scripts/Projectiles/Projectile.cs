@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class BaseProjectile : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
     private Vector3 target;
     private Transform targetTransform;
@@ -23,6 +23,9 @@ public class BaseProjectile : MonoBehaviour
     public float timeToLive;
     private float timeAlive = 0f;
 
+    public bool isSplash;
+    public float splashRadius;
+
     private TargetPriority priority = TargetPriority.Closest;
     private TargetType targetType = TargetType.Enemy;
 
@@ -37,6 +40,7 @@ public class BaseProjectile : MonoBehaviour
     {
         target = _target.position;
         targetTransform = _target;
+
         if (isHoming)
         {
             InvokeRepeating("UpdateTarget", 0f, 0.5f);
@@ -69,13 +73,30 @@ public class BaseProjectile : MonoBehaviour
 
         if (c.CompareTag("Ground"))
         {
-            DestroyProjectile();
+            HitTarget(c, false);
         }
 
     }
 
-    void HitTarget(Collider c)
+    void HitTarget(Collider c, bool isEnemy = true)
     {
+        if (isSplash)
+        {
+            List<GameObject> inRangeTargets = EnemyManager.Instance.GetEnemiesInRange(gameObject.transform.position, splashRadius);
+            foreach (GameObject enemy in inRangeTargets)
+            {
+                if (enemy == null) continue;
+                enemy.GetComponent<Damageable>().TakeDamage(damage);
+                pierce--;
+            }
+        }
+
+        if (!isEnemy)
+        {
+            DestroyProjectile();
+            return;
+        }
+
         if (pierce <= 0)
         {
             DestroyProjectile();
@@ -166,7 +187,7 @@ public class ProjectileModifier
         baseSpeed = _speed;
     }
 
-    public void UpdateProjectile(BaseProjectile proj)
+    public void UpdateProjectile(Projectile proj)
     {
         damage += proj.baseDamage - baseDamage;
         pierce += proj.basePierce - basePierce;
