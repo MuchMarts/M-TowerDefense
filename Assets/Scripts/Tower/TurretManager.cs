@@ -1,9 +1,6 @@
-using System;
 using System.Collections.Generic;
-using System.Data.Common;
 using UnityEngine;
-using UnityEngine.Assertions;
-using UnityEngine.Events;
+
 
 public class TurretManager : MonoBehaviour
 {
@@ -23,7 +20,7 @@ public class TurretManager : MonoBehaviour
     [Header("Turret Attack Speed")]
     public float baseFireRate = 1f;
     private float _fireRate;
-    private float fireRate {
+    private float FireRate {
         get { if (_fireRate <= 0.1f) return 0.1f; return _fireRate;}
         set { _fireRate = value; }
     }
@@ -35,14 +32,18 @@ public class TurretManager : MonoBehaviour
     [Header("Turret Targeting")]
     public TargetPriority target = TargetPriority.Closest;
     public TargetType priority = TargetType.Enemy;
-    private GameObject currentTarget = null;
+    protected GameObject currentTarget = null;
 
     // Referenced components
     private TowerRingManager ringManager;
 
+    protected Vector3 originalPosition;
+
 
     void Awake()
     {
+        originalPosition = transform.localPosition;
+
         if (EnemyManager.Instance == null)
         {
             Debug.LogError("Enemy Manager is null");
@@ -57,7 +58,7 @@ public class TurretManager : MonoBehaviour
         }
 
         range = baseRange;
-        fireRate = baseFireRate;
+        FireRate = baseFireRate;
         currentProjectile = baseProjectile;
     }
 
@@ -88,10 +89,10 @@ public class TurretManager : MonoBehaviour
                     range *= (float)effect.effectValue;
                     break;
                 case RingEffectType.fFireRate:
-                    fireRate += (float)effect.effectValue;
+                    FireRate += (float)effect.effectValue;
                     break;
                 case RingEffectType.pFireRate:
-                    fireRate *= (float)effect.effectValue;
+                    FireRate *= (float)effect.effectValue;
                     break;
                 case RingEffectType.fDamage:
                     projMod.damage += (float)effect.effectValue;
@@ -133,7 +134,7 @@ public class TurretManager : MonoBehaviour
     }
     private float timeToResetRotation = 3f;
     private float countdownResetRotation = 0f;
-    void ResetXZRotation()
+    protected void ResetXZRotation()
     {
         if (countdownResetRotation > 0f)
         {
@@ -148,14 +149,13 @@ public class TurretManager : MonoBehaviour
         }
     }
 
-    void Update()
+    protected virtual Vector3 RotateTurret()
     {
         if (currentTarget == null)
         {
             ResetXZRotation();
-            return;
+            return Vector3.zero;
         }
-        countdownResetRotation = timeToResetRotation;
 
         Vector3 direction = currentTarget.transform.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(direction);
@@ -165,7 +165,18 @@ public class TurretManager : MonoBehaviour
         float clampedZ = Mathf.Clamp(rotation.z, -20f, 20f);
 
         gameObject.transform.rotation = Quaternion.Euler(clampedX, rotation.y, clampedZ);
+        return direction;
+    }
 
+    void Update()
+    {
+        Vector3 direction = RotateTurret();
+        if (direction == Vector3.zero)
+        {
+            return;
+        }
+
+        countdownResetRotation = timeToResetRotation;
 
         if (timeSinceLastShot > 10f) 
         {
@@ -176,7 +187,7 @@ public class TurretManager : MonoBehaviour
             attackCountdown -= Time.deltaTime;
             return;
         }
-        if (fireRate <= 0f)
+        if (FireRate <= 0f)
         {
             Debug.LogError("Attack speed is 0 or less, Turret: " + gameObject.name);
             return;
@@ -185,10 +196,10 @@ public class TurretManager : MonoBehaviour
         Debug.DrawRay(firePoint.position, direction, Color.blue);
         Debug.DrawRay(firePoint.position, currentTarget.transform.position - firePoint.position, Color.red);
 
-        if (Vector3.Angle(transform.forward, direction) < 20f) 
+        if (Vector3.Angle(firePoint.transform.forward, direction) < 20f) 
         {
             Shoot();
-            attackCountdown = 1f / fireRate;
+            attackCountdown = 1f / FireRate;
         }
 
         timeSinceLastShot += Time.deltaTime;
