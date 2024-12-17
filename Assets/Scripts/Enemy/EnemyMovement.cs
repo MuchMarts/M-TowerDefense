@@ -36,8 +36,14 @@ public class EnemyMovement : MonoBehaviour
     {
         Vector3 direction = target.position - transform.position;
         transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
+        Vector3 lookDirection = target.position - transform.position;
+        if (lookDirection != Vector3.zero)
+        {
+            Quaternion rotation = Quaternion.LookRotation(lookDirection);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * 10f);
+        }
 
-        if (Vector3.Distance(transform.position, target.position) <= 0.2f)
+        if (0.2f >= Vector3.Distance(transform.position, target.position))
         {
             GetNextWaypoint();
         }

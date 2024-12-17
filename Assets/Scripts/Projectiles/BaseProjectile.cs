@@ -1,18 +1,30 @@
 using System;
+using System.Collections.Generic;
+using System.Xml.Serialization;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class BaseProjectile : MonoBehaviour
 {
     private Vector3 target;
+    private Transform targetTransform;
+    private Vector3 _target;
 
-    public float baseSpeed = 70f;
-    public int basePierce = 1;
-    public float baseDamage = 1f;
-
+    public float baseSpeed;
+    public int basePierce;
+    public float baseDamage;
     private float damage;
     private int pierce;
     private float speed;
+
+    public bool isHoming;
+    public float homingRadius;
+    public bool isTimed;
+    public float timeToLive;
+    private float timeAlive = 0f;
+
+    private TargetPriority priority = TargetPriority.Closest;
+    private TargetType targetType = TargetType.Enemy;
 
     void Awake()
     {
@@ -24,6 +36,28 @@ public class BaseProjectile : MonoBehaviour
     public void Seek(Transform _target)
     {
         target = _target.position;
+        targetTransform = _target;
+        if (isHoming)
+        {
+            InvokeRepeating("UpdateTarget", 0f, 0.5f);
+        }
+    }
+    
+    private void UpdateTarget()
+    {
+        if (targetTransform != null)
+        {
+            return;
+        }
+
+        List<GameObject> inRangeTargets = EnemyManager.Instance.GetEnemiesInRange(transform.position, homingRadius);
+        GameObject newTarget = Targeting.getTarget(priority, targetType, transform, inRangeTargets);
+
+        if (newTarget == null) 
+        {
+            return;
+        }
+        target = newTarget.transform.position;
     }
 
     void OnTriggerEnter(Collider c)
@@ -31,6 +65,11 @@ public class BaseProjectile : MonoBehaviour
         if (c.CompareTag("Enemy"))
         {
             HitTarget(c);
+        }
+
+        if (c.CompareTag("Ground"))
+        {
+            DestroyProjectile();
         }
 
     }
@@ -56,7 +95,24 @@ public class BaseProjectile : MonoBehaviour
             return;
         }
 
-        Vector3 direction = target - transform.position;
+        if (isHoming && targetTransform != null) {
+            _target = targetTransform.position;
+            target = _target; //Keep last target
+        } else {
+            _target = target;
+        }
+
+        if (isTimed)
+        {
+            timeAlive += Time.deltaTime;
+            if (timeAlive >= timeToLive)
+            {
+                DestroyProjectile();
+                return;
+            }
+        }
+
+        Vector3 direction = _target - transform.position;
         float distanceThisFrame = speed * Time.deltaTime;
 
         if (direction.magnitude <= distanceThisFrame)

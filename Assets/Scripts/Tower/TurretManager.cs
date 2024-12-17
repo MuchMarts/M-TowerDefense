@@ -22,9 +22,10 @@ public class TurretManager : MonoBehaviour
 
     [Header("Turret Attack Speed")]
     public float baseFireRate = 1f;
+    private float _fireRate;
     private float fireRate {
-        get { if (fireRate <= 0.1f) return 0.1f; return fireRate;}
-        set { fireRate = value; }
+        get { if (_fireRate <= 0.1f) return 0.1f; return _fireRate;}
+        set { _fireRate = value; }
     }
     private float attackCountdown = 0f;
     private float timeSinceLastShot = 0f;
@@ -120,7 +121,7 @@ public class TurretManager : MonoBehaviour
     void UpdateTarget()
     {
         List<GameObject> inRangeTargets = EnemyManager.Instance.GetEnemiesInRange(transform.position, range);
-        GameObject newTarget = TurretTargeting.getTarget(target, priority, transform, inRangeTargets);
+        GameObject newTarget = Targeting.getTarget(target, priority, transform, inRangeTargets);
 
         if (newTarget == null) 
         {

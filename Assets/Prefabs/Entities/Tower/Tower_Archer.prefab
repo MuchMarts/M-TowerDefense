@@ -239,8 +239,8 @@ MonoBehaviour:
   baseProjectile: {fileID: 4168489110273282410, guid: c4a80b62078f4684db56c5f185d9f269, type: 3}
   firePoint: {fileID: 6493837537092930240}
   turnSpeed: 10
-  baseRange: 3
-  baseFireRate: 1
+  baseRange: 10
+  baseFireRate: 2
   target: 0
   priority: 0
 --- !u!1 &3488338936928343595 stripped

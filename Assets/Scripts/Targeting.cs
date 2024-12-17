@@ -5,7 +5,7 @@ using UnityEngine;
 public enum TargetPriority { Closest };
 public enum TargetType { Enemy };
 
-public class TurretTargeting : MonoBehaviour
+public class Targeting : MonoBehaviour
 {
 
 
