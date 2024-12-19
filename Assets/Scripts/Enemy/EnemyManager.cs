@@ -34,4 +34,10 @@ public class EnemyManager : MonoBehaviour
         }
         return enemiesInRange;
     }
+
+    public bool NoEnemiesRemaining()
+    {
+        return allEnemies.Count == 0;
+    }
+
 }

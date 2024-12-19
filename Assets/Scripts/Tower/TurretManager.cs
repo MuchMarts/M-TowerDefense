@@ -21,7 +21,7 @@ public class TurretManager : MonoBehaviour
     public float baseFireRate = 1f;
     private float _fireRate;
     private float FireRate {
-        get { if (_fireRate <= 0.1f) return 0.1f; return _fireRate;}
+        get { if (_fireRate >= 10f) return 10f; return _fireRate;}
         set { _fireRate = value; }
     }
     private float attackCountdown = 0f;
@@ -112,6 +112,9 @@ public class TurretManager : MonoBehaviour
                     break;
               }
         }
+
+        Debug.Log("Tower: " + gameObject.name + " has new attributes: " + range + " " + FireRate + " " + currentProjectile.name);
+
         if (projMod != null) 
         {
             Debug.Log("Projectile modifier created: " + projMod.damage + " " + projMod.pierce + " " + projMod.speed);

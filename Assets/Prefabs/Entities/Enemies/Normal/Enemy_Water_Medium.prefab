@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 1839312608896843161}
   m_Layer: 0
   m_Name: Enemy_Water_Medium
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e60cffc48851d8478626103e359458a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  armour: 0
+  pierce_armour: 0
 --- !u!114 &3134084906635510372
 MonoBehaviour:
   m_ObjectHideFlags: 0

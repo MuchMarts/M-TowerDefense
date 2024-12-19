@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class FireRateRing : BaseRing
 {
-    private float pAttackSpeed = 110f;
+    private float pAttackSpeed = 150f;
     private float adjacencyBonus = 100f;
 
     private float AttackSpeed() 

@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableObjects/Wave", fileName = "Wave", order = 1)]
-public class Wave : ScriptableObject
+[System.Serializable]
+public class Wave
 {
-    [field: SerializeField]
-    public List<WaveSpawns> WaveSpawns { get; private set; }
-    [field: SerializeField]
-    public float TimeBetweenSpawns { get; private set; }
+    public SubWave[] subWaves;
 }
 
-public class WaveSpawns {
-    public GameObject Enemy { get; set; }
-    public int Count { get; set; }
+[System.Serializable]
+public class SubWave
+{
+    public GameObject enemyPrefab;
+    public int count;
+    public float rate;
+    public float delay;
 }
