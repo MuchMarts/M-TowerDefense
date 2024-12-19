@@ -7,6 +7,22 @@ public abstract class BaseRing : MonoBehaviour
     public int id { get; protected set; }
     protected List<GameObject> neighbourRings = new List<GameObject>();
 
+    float max_spin_speed = 0.5f;
+    float min_spin_speed = 0.1f;
+    float spin_speed;
+    float spin_direction;
+    
+    public void Start()
+    {
+        spin_direction = Random.Range(1, 3) == 1 ? 1 : -1;
+        spin_speed = Random.Range(min_spin_speed, max_spin_speed);
+    }
+
+    void Update()
+    {
+        gameObject.transform.GetChild(0).Rotate(0, 0, spin_speed * spin_direction);
+    }
+
     public void AddNeigbhourRing(GameObject ring)
     {
         // Skips Duplicates
@@ -49,5 +65,7 @@ public enum RingEffectType
         pFireRate,
         Projectile,
         ProjectileSpeed,
+        isHoming,
+        HomingRange,
         RingReadManipulation,
     }

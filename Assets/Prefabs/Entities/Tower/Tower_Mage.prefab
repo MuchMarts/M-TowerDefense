@@ -50,7 +50,19 @@ MonoBehaviour:
   ringAnchor: {fileID: 1727890572830474809}
   RingStackChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8358342890143779722}
+        m_TargetAssemblyTypeName: TurretManager, Assembly-CSharp
+        m_MethodName: OnRingStackChanged
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1727890572830474809
 GameObject:
   m_ObjectHideFlags: 0
@@ -76,7 +88,7 @@ Transform:
   m_GameObject: {fileID: 1727890572830474809}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.25, z: 0}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -282,10 +294,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseProjectile: {fileID: 5964673318346720636, guid: 93aa545019fb983449fdd57359f8d27f, type: 3}
   firePoint: {fileID: 1480208334296150443}
-  turnSpeed: 10
-  baseRange: 10
-  baseFireRate: 5
+  turnSpeed: 4
+  baseRange: 3
+  baseFireRate: 2
   target: 0
   priority: 0
   turretAnchor: {fileID: 5846703821624558363}
   rotationSpeed: {x: 0, y: 10, z: 0}
+  bobbingSpeed: 1
+  bobbingAmplitude: 0.2

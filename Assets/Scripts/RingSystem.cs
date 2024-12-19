@@ -14,7 +14,7 @@ public class RingSystem : MonoBehaviour
     private PlayerManager playerManager;
 
     // Variables for Ring Placement
-    private TowerRingManager ringOriginTowerBehaviour;    
+    private TowerRingManager ringOriginTowerManager;    
     private GameObject currentRing = null;
     private int selectedNewRingID = -1;
 
@@ -98,7 +98,7 @@ public class RingSystem : MonoBehaviour
     {
         StopPlacement();
         currentRing = ring;
-        ringOriginTowerBehaviour = tower;
+        ringOriginTowerManager = tower;
 
         inputManager.OnClicked += AddRing;
         inputManager.OnExit += StopPlacement;
@@ -147,10 +147,10 @@ public class RingSystem : MonoBehaviour
             return;
         }
 
-        if (ringOriginTowerBehaviour != null)
+        if (ringOriginTowerManager != null)
         {
-            towerBehaviour.AddRing(currentRing, ringOriginTowerBehaviour);
-            Debug.Log("Ring: " + currentRing.name + " added to tower: " + towerBehaviour.name + " at position: " + gridPos + " from tower: " + ringOriginTowerBehaviour.name);
+            towerBehaviour.AddRing(currentRing, ringOriginTowerManager);
+            Debug.Log("Ring: " + currentRing.name + " added to tower: " + towerBehaviour.name + " at position: " + gridPos + " from tower: " + ringOriginTowerManager.name);
         }
         else 
         {
@@ -170,6 +170,6 @@ public class RingSystem : MonoBehaviour
         
         // Reset the current ring and tower
         currentRing = null;
-        ringOriginTowerBehaviour = null;
+        ringOriginTowerManager = null;
     }
 }

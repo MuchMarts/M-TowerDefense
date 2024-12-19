@@ -82,7 +82,7 @@ MonoBehaviour:
   RingStackChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1859408017671781031}
         m_TargetAssemblyTypeName: TurretManager, Assembly-CSharp
         m_MethodName: OnRingStackChanged
         m_Mode: 1
@@ -239,7 +239,7 @@ MonoBehaviour:
   baseProjectile: {fileID: 4168489110273282410, guid: c4a80b62078f4684db56c5f185d9f269, type: 3}
   firePoint: {fileID: 6493837537092930240}
   turnSpeed: 10
-  baseRange: 4
+  baseRange: 5
   baseFireRate: 1
   target: 0
   priority: 0

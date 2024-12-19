@@ -23,6 +23,11 @@ public class TowerRingManager : MonoBehaviour
     // Public methods
     public bool AddRing(GameObject ring, TowerRingManager tower = null)
     {
+        if (ring == null){
+            Debug.LogError("Ring is null, TowerRingManager.cs, Tower: " + gameObject.transform.name);
+            return false;
+        };
+
         bool success = ringStack.Add(ring);
         if (success) 
         {
@@ -52,9 +57,11 @@ public class TowerRingManager : MonoBehaviour
 
     private void TransforRingLocation(GameObject ring)
     {
-        ring.transform.SetParent(ringAnchor.transform);        
-        float offset = ringStack.Count * 0.2f;
-        ring.transform.localPosition = new Vector3(0, offset, 0);
+        ring.transform.SetParent(ringAnchor.transform);
+        // TODO: Make this dynamic. for now, it's hardcoded
+        float offset = (0.8f-0.1f) / ringStackSize;    
+        float new_ring_pos = ringStack.Count * offset;
+        ring.transform.localPosition = new Vector3(0, new_ring_pos, 0);
     }
 
     public List<RingEffect> GetRingEffects()
@@ -134,6 +141,12 @@ class RingStack {
             Debug.LogError("Ring is null");
             return false;
         }
+
+        if (ring.GetComponent<BaseRing>() == null) {
+            Debug.LogError("Ring does not have a BaseRing component");
+            return false;
+        }
+
         ring.SetActive(true);
         AddRing(ring);
         return true;
@@ -150,9 +163,16 @@ class RingStack {
     {
         if (index < 0) return null;
         GameObject ring = ringStack[index];
+        
+        if (ring == null) {
+            Debug.LogError("Ring is null");
+            return null;
+        }
+
         ringStack.RemoveAt(index);
-        RemoveNeighbours(ring);
         index--;
+
+        RemoveNeighbours(ring);
         return ring;
     }
 
@@ -169,7 +189,7 @@ class RingStack {
 
     private void UpdateNeighbours()
     {
-        if (index < 1) return;
+        if (Count <= 1) return;
 
         // Updates neighbours of a ring starting from the bottom
         // Duplicates skipped in BaseRing.AddNeigbhourRing
@@ -185,10 +205,10 @@ class RingStack {
 
     private void RemoveNeighbours(GameObject ring)
     {
-        if (index < 1) return;
-
+        if (Count < 1) return;
+    
         BaseRing currentRing = ring.GetComponent<BaseRing>();
-        BaseRing previousRing = ringStack[index-1].GetComponent<BaseRing>();
+        BaseRing previousRing = ringStack[index].GetComponent<BaseRing>();
 
         currentRing.RemoveNeigbhourRing(previousRing.gameObject);
         previousRing.RemoveNeigbhourRing(currentRing.gameObject);

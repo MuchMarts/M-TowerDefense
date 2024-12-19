@@ -46,13 +46,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc5a93608f03e1b4bbdaa1f736dfc897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 5
+  baseSpeed: 10
   basePierce: 1
   baseDamage: 1
   isHoming: 1
-  homingRadius: 1
+  homingRadius: 2
   isTimed: 1
-  timeToLive: 5
+  timeToLive: 3
   isSplash: 0
   splashRadius: 0
 --- !u!135 &6258514881593190833
@@ -74,7 +74,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &3094795371319636132
 PrefabInstance:
