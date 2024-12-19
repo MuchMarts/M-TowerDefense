@@ -59,6 +59,7 @@ public class PlacementSystem : MonoBehaviour
 
         GameObject tower = Instantiate(playerManager.allTowers[selectedTowerID]);
         tower.transform.position = grid.CellToWorld(gridPos);
+        playerManager.AddTower(tower);
     }
 
     public void StopPlacement()

@@ -11,14 +11,14 @@ public class Damageable : MonoBehaviour
         health = GetComponent<Health>();
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, GameObject source)
     {
         if (health == null)
         {
             Debug.Log("Object does not have health component");
             return;
         }
-        health.ChangeHealth(-damage);
+        health.ChangeHealth(-damage, source);
     }
 
 }

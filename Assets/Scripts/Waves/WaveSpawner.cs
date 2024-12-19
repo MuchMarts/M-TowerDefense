@@ -17,6 +17,8 @@ public class WaveSpawner : MonoBehaviour
     private float countdown = 2f;
 
     public UnityEvent WavesCompleted;
+    public UnityEvent WaveStarted;
+    public UnityEvent WaveEnded;
 
     void Update()
     {
@@ -24,10 +26,12 @@ public class WaveSpawner : MonoBehaviour
         {
             StartCoroutine(SpawnWave());
             countdown = timeBetweenWaves;
+            WaveStarted.Invoke();
         }
-        
+
         if ( EnemyManager.Instance.NoEnemiesRemaining())
         {
+            WaveEnded.Invoke();
             countdown -= Time.deltaTime;
         }
         
@@ -36,6 +40,20 @@ public class WaveSpawner : MonoBehaviour
             WavesCompleted.Invoke();
             Debug.Log("All waves completed");
         }
+    }
+
+    public float GetWaveNumber()
+    {
+        return waveIndex;
+    }
+
+    public float GetTimeToNextWave()
+    {
+        if (countdown < 0)
+        {
+            return 0;
+        }
+        return countdown;
     }
 
     IEnumerator SpawnWave()

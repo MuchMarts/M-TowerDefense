@@ -52,6 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pierce_armour: 0
+  value: 6
 --- !u!114 &3134084906635510372
 MonoBehaviour:
   m_ObjectHideFlags: 0

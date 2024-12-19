@@ -68,13 +68,11 @@ public class Projectile : MonoBehaviour
     {
         if (c.CompareTag("Enemy"))
         {
-            Debug.Log("Hit Enemy");
             HitTarget(c);
         }
 
         if (c.CompareTag("Ground"))
         {
-            Debug.Log("Hit Ground");
             HitTarget(c, false);
         }
 
@@ -88,7 +86,7 @@ public class Projectile : MonoBehaviour
             foreach (GameObject enemy in inRangeTargets)
             {
                 if (enemy == null) continue;
-                enemy.GetComponent<Damageable>().TakeDamage(damage);
+                enemy.GetComponent<Damageable>().TakeDamage(damage, gameObject);
                 // Could be changed so the splash is triggered by hitting an enemy thus allowing for multiple splashes
                 DestroyProjectile();
             }
@@ -106,7 +104,7 @@ public class Projectile : MonoBehaviour
             DestroyProjectile();
         } else {
             Debug.Log("Pierce: " + pierce + " Damage: " + damage);
-            c.GetComponent<Damageable>().TakeDamage(damage);
+            c.GetComponent<Damageable>().TakeDamage(damage, gameObject);
 
         }
         pierce -= c.GetComponent<Enemy>().pierce_armour;
