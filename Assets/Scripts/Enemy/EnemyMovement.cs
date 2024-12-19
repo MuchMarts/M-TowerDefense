@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public float speed = 10f;
-
+    public float baseSpeed = 10f;
+    private float speed;
     // Handle next waypoint in map
     private Transform target;
     private int waypointIndex = 0;
@@ -47,5 +48,10 @@ public class EnemyMovement : MonoBehaviour
         {
             GetNextWaypoint();
         }
+    }
+    
+    public void buffSpeed(float value)
+    {
+        speed = baseSpeed * value;
     }
 }

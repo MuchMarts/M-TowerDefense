@@ -87,6 +87,5 @@ public class WaveSpawner : MonoBehaviour
         }
 
         GameObject enemy = Instantiate(enemyPrefab, Waypoints.points[0].position, Quaternion.identity);
-        EnemyManager.Instance.RegisterEnemy(enemy);
     }
 }
