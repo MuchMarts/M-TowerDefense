@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public float baseSpeed = 10f;
-    private float speed;
+    public float speed = 10f;
+    public float speedModifier = 1f;
     // Handle next waypoint in map
     private Transform target;
     private int waypointIndex = 0;
@@ -36,7 +36,7 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
         Vector3 direction = target.position - transform.position;
-        transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
+        transform.Translate(direction.normalized * speed * speedModifier * Time.deltaTime, Space.World);
         Vector3 lookDirection = target.position - transform.position;
         if (lookDirection != Vector3.zero)
         {
@@ -48,10 +48,5 @@ public class EnemyMovement : MonoBehaviour
         {
             GetNextWaypoint();
         }
-    }
-    
-    public void buffSpeed(float value)
-    {
-        speed = baseSpeed * value;
     }
 }
