@@ -16,10 +16,9 @@ public class DamageRing : BaseRing
 
     public override Dictionary<RingEffectType, object> GetEffect()
     { 
-        Dictionary<RingEffectType, object> ability = new Dictionary<RingEffectType, object>
+        return new Dictionary<RingEffectType, object>
         {
             { ringEffectType, Damage() },
         };
-        return ability;
     }
 }

@@ -3,21 +3,20 @@ using UnityEngine;
 
 public class FireRateRing : BaseRing
 {
-    private float pAttackSpeed = 150f;
+    private float pFireRate = 150f;
     private float adjacencyBonus = 100f;
 
-    private float AttackSpeed() 
+    private float FireRate() 
     {
-        float adjAttackSpeed = AdjacenctCount() * (pAttackSpeed/100) * adjacencyBonus/100;
-        return (pAttackSpeed + adjAttackSpeed) / 100;
+        float adjFireRate = AdjacenctCount() * (pFireRate/100) * adjacencyBonus/100;
+        return (pFireRate + adjFireRate) / 100;
     }
 
     public override Dictionary<RingEffectType,object> GetEffect()
     { 
-        Dictionary<RingEffectType, object> ability = new Dictionary<RingEffectType, object>
+        return new  Dictionary<RingEffectType, object>
         {
-            { RingEffectType.pFireRate, AttackSpeed() }
+            { RingEffectType.pFireRate, FireRate() }
         };
-        return ability;
     }
 }

@@ -16,10 +16,9 @@ public class RangeRing : BaseRing
 
     public override Dictionary<RingEffectType,object> GetEffect()
     { 
-        Dictionary<RingEffectType, object> ability = new()
+        return new Dictionary<RingEffectType, object>
         {
             { ringEffectType, Range() }
         };
-        return ability;
     }   
 }

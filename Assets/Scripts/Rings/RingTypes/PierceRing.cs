@@ -16,10 +16,9 @@ public class PierceRing : BaseRing
 
     public override Dictionary<RingEffectType,object> GetEffect()
     { 
-        Dictionary<RingEffectType,object> effect = new Dictionary<RingEffectType, object>
+        return new Dictionary<RingEffectType,object>
         {
             { ringEffectType, Pierce() }
         };
-        return effect;
     }   
 }
