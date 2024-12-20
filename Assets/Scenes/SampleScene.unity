@@ -3930,6 +3930,8 @@ MonoBehaviour:
   - {fileID: 6331053727667040884, guid: 260a95ed71500b64d9306de85382a129, type: 3}
   - {fileID: 2245027816611184769, guid: acf3ce388a0d1084895ab0af376d6f98, type: 3}
   - {fileID: 1436045360711446862, guid: d9cad24606fea1741b7349c931cedcda, type: 3}
+  - {fileID: 8743615735680675187, guid: c0e8cc7e8a406ac48a8b7c5755892056, type: 3}
+  - {fileID: 5780136390039758371, guid: 8f8456d480eac29429e6288a954f6f27, type: 3}
   OnHealthZero:
     m_PersistentCalls:
       m_Calls: []

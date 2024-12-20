@@ -107,6 +107,12 @@ public class TurretManager : MonoBehaviour
                     currentProjectile = (GameObject)effect.effectValue;
                     projMod.UpdateProjectile(currentProjectile.GetComponent<Projectile>());
                     break;
+                case RingEffectType.isHoming:
+                    projMod.isHoming = (bool)effect.effectValue;
+                    break;
+                case RingEffectType.HomingRange:
+                    projMod.homingRadius = (float)effect.effectValue;
+                    break;
                 default:
                     Debug.LogWarning("Ring effect not implemented: " + effect.ringEffectType);
                     break;
