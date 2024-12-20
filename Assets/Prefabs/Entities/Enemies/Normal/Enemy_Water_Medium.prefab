@@ -10,10 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9015537857808311198}
   - component: {fileID: 6154237086063269587}
-  - component: {fileID: 3134084906635510372}
   - component: {fileID: 4593700343811107619}
-  - component: {fileID: 8319413007283611770}
-  - component: {fileID: 1299691737837292689}
   - component: {fileID: 3718876398355875152}
   - component: {fileID: 1839312608896843161}
   m_Layer: 0
@@ -51,36 +48,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e60cffc48851d8478626103e359458a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
   pierce_armour: 0
   value: 6
---- !u!114 &3134084906635510372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5316924448509469443}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 585a19aca8b8e814ea521404a679bbd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 4
-  onHealthZero:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1299691737837292689}
-        m_TargetAssemblyTypeName: Destructible, Assembly-CSharp
-        m_MethodName: DestroyObject
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &4593700343811107619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,30 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
---- !u!114 &8319413007283611770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5316924448509469443}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5d9f3ef24fcba24c9456fedb1fbd64a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1299691737837292689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5316924448509469443}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bddf0f59f9bd1134c82b74ce11a4388b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  speedModifier: 1
 --- !u!54 &3718876398355875152
 Rigidbody:
   m_ObjectHideFlags: 0
