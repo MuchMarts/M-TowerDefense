@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Rendering;
@@ -11,6 +12,7 @@ public class Enemy : MonoBehaviour
     public int value = 1; // How much money the player gets for killing
 
     private TowerManager towerManager = TowerManager.Instance;
+    private BuffManager buffManager = BuffManager.Instance;
     private EnemyMovement enemyMovement;
     void Start()
     {
@@ -19,7 +21,7 @@ public class Enemy : MonoBehaviour
     }
 
     // trueDamage ignores armour, source is the object that caused the damage
-    public void TakeDamage(float damage, GameObject source, bool trueDamage = false)
+    public void TakeDamage(float damage, GameObject source, bool trueDamage = false, List<Buff> buffs = null)
     {
         float dmg = damage;
 
@@ -28,7 +30,6 @@ public class Enemy : MonoBehaviour
             dmg = damage - damage_armour;
             if (dmg < 0f) dmg = 0f;
         }
-
         health -= dmg;
         if (health <= 0)
         {
@@ -38,6 +39,16 @@ public class Enemy : MonoBehaviour
             }
             DestroyObject();
         }
+
+        // If not dead, apply buffs
+        if (buffs != null)
+        {
+            foreach (Buff buff in buffs)
+            {
+                buffManager.ApplyBuff(gameObject.GetComponent<Enemy>(), buff);
+            }
+        }
+
     }
 
     public void Heal(float value)

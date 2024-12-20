@@ -11,9 +11,6 @@ GameObject:
   - component: {fileID: 635436163179717979}
   - component: {fileID: 3876190930852870255}
   - component: {fileID: 4908706773095069175}
-  - component: {fileID: 8210846155942701341}
-  - component: {fileID: 220814196725948762}
-  - component: {fileID: 8381402315610382018}
   - component: {fileID: 5917110432890356419}
   - component: {fileID: 1706953424596066703}
   m_Layer: 0
@@ -51,7 +48,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e60cffc48851d8478626103e359458a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
   pierce_armour: 4
+  damage_armour: 0
   value: 10
 --- !u!114 &4908706773095069175
 MonoBehaviour:
@@ -66,58 +65,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
---- !u!114 &8210846155942701341
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1521169639394670288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 585a19aca8b8e814ea521404a679bbd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 10
-  onHealthZero:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8381402315610382018}
-        m_TargetAssemblyTypeName: Destructible, Assembly-CSharp
-        m_MethodName: DestroyObject
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &220814196725948762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1521169639394670288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5d9f3ef24fcba24c9456fedb1fbd64a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8381402315610382018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1521169639394670288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bddf0f59f9bd1134c82b74ce11a4388b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  speedModifier: 1
 --- !u!54 &5917110432890356419
 Rigidbody:
   m_ObjectHideFlags: 0

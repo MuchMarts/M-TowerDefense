@@ -26,6 +26,10 @@ public class Projectile : MonoBehaviour
     public bool isSplash;
     public float splashRadius;
 
+    public bool isTrueDamage = false;
+
+    public List<Buff> buffs;
+
     private TargetPriority priority = TargetPriority.Closest;
     private TargetType targetType = TargetType.Enemy;
 
@@ -86,7 +90,7 @@ public class Projectile : MonoBehaviour
             foreach (GameObject enemy in inRangeTargets)
             {
                 if (enemy == null) continue;
-                enemy.GetComponent<Enemy>().TakeDamage(damage, gameObject);
+                enemy.GetComponent<Enemy>().TakeDamage(damage, gameObject, isTrueDamage, buffs);
                 // Could be changed so the splash is triggered by hitting an enemy thus allowing for multiple splashes
                 DestroyProjectile();
             }
@@ -103,9 +107,7 @@ public class Projectile : MonoBehaviour
         {
             DestroyProjectile();
         } else {
-            Debug.Log("Pierce: " + pierce + " Damage: " + damage);
-            c.GetComponent<Enemy>().TakeDamage(damage, gameObject);
-
+            c.GetComponent<Enemy>().TakeDamage(damage, gameObject, isTrueDamage, buffs);
         }
         pierce -= c.GetComponent<Enemy>().pierce_armour;
     }
@@ -158,12 +160,11 @@ public class Projectile : MonoBehaviour
     public void SetModifier(ProjectileModifier projectileModifier)
     {
         if (projectileModifier == null) return;
-        Debug.Log("Setting modifier: " + projectileModifier.damage + " " + projectileModifier.pierce + " " + projectileModifier.speed);
-        Debug.Log("Current: " + damage + " " + pierce + " " + speed);
-        
         damage = projectileModifier.damage;
         pierce = projectileModifier.pierce;
         speed = projectileModifier.speed;
+        isHoming = projectileModifier.isHoming;
+        homingRadius = projectileModifier.homingRadius;
     }
 }
 

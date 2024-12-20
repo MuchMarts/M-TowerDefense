@@ -20,6 +20,8 @@ public class WaveSpawner : MonoBehaviour
     public UnityEvent WaveStarted;
     public UnityEvent WaveEnded;
 
+    private bool waveInProgress = false;
+
     void Update()
     {
         if (countdown <= 0f)
@@ -29,13 +31,13 @@ public class WaveSpawner : MonoBehaviour
             WaveStarted.Invoke();
         }
 
-        if ( EnemyManager.Instance.NoEnemiesRemaining())
+        if ( EnemyManager.Instance.NoEnemiesRemaining() && !waveInProgress)
         {
             WaveEnded.Invoke();
             countdown -= Time.deltaTime;
         }
         
-        if (waveIndex == waves.Length && EnemyManager.Instance.NoEnemiesRemaining())
+        if (waveIndex == waves.Length && EnemyManager.Instance.NoEnemiesRemaining() && !waveInProgress)
         {
             WavesCompleted.Invoke();
             Debug.Log("All waves completed");
@@ -58,13 +60,14 @@ public class WaveSpawner : MonoBehaviour
 
     IEnumerator SpawnWave()
     {   
-
+        waveInProgress = true;
         // Spawn enemies
         for (int i = 0; i < waves[waveIndex].subWaves.Count() ; i++)
         {
             StartCoroutine(SpawnSubWave(waves[waveIndex].subWaves[i]));
         }
         waveIndex++;
+        waveInProgress = false;
         yield return null;
     }
 
