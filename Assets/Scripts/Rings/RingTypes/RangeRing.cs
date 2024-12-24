@@ -10,7 +10,7 @@ public class RangeRing : BaseRing
 
     private float Range() 
     {
-        float adjRange = AdjacenctCount() * pRange * adjacencyBonus/100;
+        float adjRange = AdjacenctCount() * pRange * adjacencyBonus/100 - AdjacenctCount() * 1f;
         return pRange + adjRange;
     }
 

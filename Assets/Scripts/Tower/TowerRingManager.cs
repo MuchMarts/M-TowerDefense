@@ -41,8 +41,9 @@ public class TowerRingManager : MonoBehaviour
 
     public GameObject RemoveTopRing()
     {
+        GameObject ring = ringStack.Remove();
         RingStackChanged.Invoke();
-        return ringStack.Remove();
+        return ring;
     }
 
     public GameObject PeekTopRing()

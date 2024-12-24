@@ -40,6 +40,8 @@ public class Projectile : MonoBehaviour
         speed = baseSpeed;
     }
 
+    // TODO: Target should be above the ground, not on the ground. 
+    // Add a height offset to the target position, and make sure homing works correctly. 
     public void Seek(Transform _target)
     {
         target = _target.position;

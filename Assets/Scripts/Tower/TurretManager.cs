@@ -62,9 +62,20 @@ public class TurretManager : MonoBehaviour
         currentProjectile = baseProjectile;
     }
 
+    void ResetTurret()
+    {
+        Projectile projectile = baseProjectile.GetComponent<Projectile>();
+        ProjectileModifier projMod = new(projectile.baseDamage, projectile.basePierce, projectile.baseSpeed);
+        projectileModifier = projMod;
+        range = baseRange;
+        FireRate = baseFireRate;
+        currentProjectile = baseProjectile;
+    }
+
     // On RingeStackChange calculate the new projectile modifier
     public void OnRingStackChanged()
     {
+        ResetTurret();
         Debug.Log("Ring stack changed");
         List<RingEffect> ringEffects = ringManager.GetRingEffects();
         if (ringEffects == null) {
