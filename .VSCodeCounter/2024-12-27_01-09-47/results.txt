@@ -1,0 +1,140 @@
+Date : 2024-12-27 01:09:47
+Directory : c:\Users\marti\M-TowerDefense\Assets
+Total : 87 files,  7246 codes, 887 comments, 2221 blanks, all 10354 lines
+
+Languages
++-------------+------------+------------+------------+------------+------------+
+| language    | files      | code       | comment    | blank      | total      |
++-------------+------------+------------+------------+------------+------------+
+| C#          |         69 |      4,753 |        805 |      1,575 |      7,133 |
+| UnityShader |         17 |      2,338 |         82 |        644 |      3,064 |
+| JSON        |          1 |        155 |          0 |          2 |        157 |
++-------------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                    | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                       |         87 |      7,246 |        887 |      2,221 |     10,354 |
+| Core                                                                                                    |         12 |        650 |         10 |        143 |        803 |
+| Core\Helpers                                                                                            |          1 |         33 |          0 |          5 |         38 |
+| Core\Managers                                                                                           |          9 |        413 |          2 |         91 |        506 |
+| Core\Managers\Scripts                                                                                   |          9 |        413 |          2 |         91 |        506 |
+| Core\Systems                                                                                            |          2 |        204 |          8 |         47 |        259 |
+| Features                                                                                                |         21 |      1,034 |         33 |        221 |      1,288 |
+| Features\Buffs                                                                                          |          2 |         22 |          0 |          5 |         27 |
+| Features\Buffs\Scripts                                                                                  |          2 |         22 |          0 |          5 |         27 |
+| Features\Enemies                                                                                        |          3 |        127 |          4 |         28 |        159 |
+| Features\Enemies\Scripts                                                                                |          3 |        127 |          4 |         28 |        159 |
+| Features\ObjectPool                                                                                     |          1 |         58 |          8 |          8 |         74 |
+| Features\ObjectPool\Scripts                                                                             |          1 |         58 |          8 |          8 |         74 |
+| Features\Projectiles                                                                                    |          3 |        197 |          3 |         46 |        246 |
+| Features\Projectiles\Scripts                                                                            |          3 |        197 |          3 |         46 |        246 |
+| Features\Rings                                                                                          |          3 |        107 |          6 |         21 |        134 |
+| Features\Rings\Scripts                                                                                  |          3 |        107 |          6 |         21 |        134 |
+| Features\Towers                                                                                         |          5 |        396 |         10 |         90 |        496 |
+| Features\Towers\Scripts                                                                                 |          5 |        396 |         10 |         90 |        496 |
+| Features\Waves                                                                                          |          4 |        127 |          2 |         23 |        152 |
+| Features\Waves\Scripts                                                                                  |          4 |        127 |          2 |         23 |        152 |
+| TextMesh Pro                                                                                            |         52 |      5,502 |        844 |      1,839 |      8,185 |
+| TextMesh Pro\Examples & Extras                                                                          |         34 |      3,009 |        762 |      1,193 |      4,964 |
+| TextMesh Pro\Examples & Extras\Scripts                                                                  |         34 |      3,009 |        762 |      1,193 |      4,964 |
+| TextMesh Pro\Shaders                                                                                    |         17 |      2,338 |         82 |        644 |      3,064 |
+| TextMesh Pro\Sprites                                                                                    |          1 |        155 |          0 |          2 |        157 |
+| UI                                                                                                      |          2 |         60 |          0 |         18 |         78 |
+| UI\Scripts                                                                                              |          2 |         60 |          0 |         18 |         78 |
++---------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------------------------------------------+-------------+------------+------------+------------+------------+
+| filename                                                                                                | language    | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------+-------------+------------+------------+------------+------------+
+| c:\Users\marti\M-TowerDefense\Assets\Core\Helpers\Targeting.cs                                          | C#          |         33 |          0 |          5 |         38 |
+| c:\Users\marti\M-TowerDefense\Assets\Core\Managers\Scripts\BuffManager.cs                               | C#          |        115 |          2 |         13 |        130 |
+| c:\Users\marti\M-TowerDefense\Assets\Core\Managers\Scripts\EnemyManager.cs                              | C#          |         37 |          0 |          8 |         45 |
+| c:\Users\marti\M-TowerDefense\Assets\Core\Managers\Scripts\GameObjectPoolManager.cs                     | C#          |         44 |          0 |         10 |         54 |
+| c:\Users\marti\M-TowerDefense\Assets\Core\Managers\Scripts\InputManager.cs                              | C#          |         55 |          0 |         17 |         72 |
+| c:\Users\marti\M-TowerDefense\Assets\Core\Managers\Scripts\PlayerManager.cs                             | C#          |         70 |          0 |         17 |         87 |
+| c:\Users\marti\M-TowerDefense\Assets\Core\Managers\Scripts\ProjectileManager.cs                         | C#          |         19 |          0 |          5 |         24 |
+| c:\Users\marti\M-TowerDefense\Assets\Core\Managers\Scripts\RingManager.cs                               | C#          |         16 |          0 |          5 |         21 |
+| c:\Users\marti\M-TowerDefense\Assets\Core\Managers\Scripts\TowerManager.cs                              | C#          |         41 |          0 |         11 |         52 |
+| c:\Users\marti\M-TowerDefense\Assets\Core\Managers\Scripts\UIManager.cs                                 | C#          |         16 |          0 |          5 |         21 |
+| c:\Users\marti\M-TowerDefense\Assets\Core\Systems\PlacementSystem.cs                                    | C#          |         69 |          0 |         16 |         85 |
+| c:\Users\marti\M-TowerDefense\Assets\Core\Systems\RingSystem.cs                                         | C#          |        135 |          8 |         31 |        174 |
+| c:\Users\marti\M-TowerDefense\Assets\Features\Buffs\Scripts\Buff.cs                                     | C#          |         10 |          0 |          2 |         12 |
+| c:\Users\marti\M-TowerDefense\Assets\Features\Buffs\Scripts\BuffSO.cs                                   | C#          |         12 |          0 |          3 |         15 |
+| c:\Users\marti\M-TowerDefense\Assets\Features\Enemies\Scripts\Enemy.cs                                  | C#          |         65 |          2 |         16 |         83 |
+| c:\Users\marti\M-TowerDefense\Assets\Features\Enemies\Scripts\EnemyMovement.cs                          | C#          |         50 |          2 |         10 |         62 |
+| c:\Users\marti\M-TowerDefense\Assets\Features\Enemies\Scripts\EnemySO.cs                                | C#          |         12 |          0 |          2 |         14 |
+| c:\Users\marti\M-TowerDefense\Assets\Features\ObjectPool\Scripts\GameObjectPoolManager.cs               | C#          |         58 |          8 |          8 |         74 |
+| c:\Users\marti\M-TowerDefense\Assets\Features\Projectiles\Scripts\Projectile.cs                         | C#          |        136 |          3 |         32 |        171 |
+| c:\Users\marti\M-TowerDefense\Assets\Features\Projectiles\Scripts\ProjectileModifier.cs                 | C#          |         39 |          0 |          5 |         44 |
+| c:\Users\marti\M-TowerDefense\Assets\Features\Projectiles\Scripts\ProjectileSO.cs                       | C#          |         22 |          0 |          9 |         31 |
+| c:\Users\marti\M-TowerDefense\Assets\Features\Rings\Scripts\Ring.cs                                     | C#          |         75 |          6 |         16 |         97 |
+| c:\Users\marti\M-TowerDefense\Assets\Features\Rings\Scripts\RingEffect.cs                               | C#          |         13 |          0 |          2 |         15 |
+| c:\Users\marti\M-TowerDefense\Assets\Features\Rings\Scripts\RingSO.cs                                   | C#          |         19 |          0 |          3 |         22 |
+| c:\Users\marti\M-TowerDefense\Assets\Features\Towers\Scripts\RingStack.cs                               | C#          |         77 |          2 |         23 |        102 |
+| c:\Users\marti\M-TowerDefense\Assets\Features\Towers\Scripts\Tower.cs                                   | C#          |         18 |          0 |          5 |         23 |
+| c:\Users\marti\M-TowerDefense\Assets\Features\Towers\Scripts\TowerRingManager.cs                        | C#          |         87 |          2 |         19 |        108 |
+| c:\Users\marti\M-TowerDefense\Assets\Features\Towers\Scripts\TowerSO.cs                                 | C#          |         15 |          0 |          2 |         17 |
+| c:\Users\marti\M-TowerDefense\Assets\Features\Towers\Scripts\TowerTurretManager.cs                      | C#          |        199 |          6 |         41 |        246 |
+| c:\Users\marti\M-TowerDefense\Assets\Features\Waves\Scripts\Finish.cs                                   | C#          |         16 |          0 |          3 |         19 |
+| c:\Users\marti\M-TowerDefense\Assets\Features\Waves\Scripts\WaveSO.cs                                   | C#          |         15 |          0 |          3 |         18 |
+| c:\Users\marti\M-TowerDefense\Assets\Features\Waves\Scripts\WaveSpawner.cs                              | C#          |         82 |          1 |         14 |         97 |
+| c:\Users\marti\M-TowerDefense\Assets\Features\Waves\Scripts\Waypoints.cs                                | C#          |         14 |          1 |          3 |         18 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Examples & Extras\Scripts\Benchmark01.cs              | C#          |         63 |         29 |         37 |        129 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Examples & Extras\Scripts\Benchmark01_UGUI.cs         | C#          |         59 |         37 |         40 |        136 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Examples & Extras\Scripts\Benchmark02.cs              | C#          |         65 |          6 |         27 |         98 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Examples & Extras\Scripts\Benchmark03.cs              | C#          |         73 |          1 |         19 |         93 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Examples & Extras\Scripts\Benchmark04.cs              | C#          |         41 |         26 |         19 |         86 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Examples & Extras\Scripts\CameraController.cs         | C#          |        198 |         25 |         69 |        292 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Examples & Extras\Scripts\ChatController.cs           | C#          |         31 |          5 |         16 |         52 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Examples & Extras\Scripts\DropdownSample.cs           | C#          |         15 |          0 |          5 |         20 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Examples & Extras\Scripts\EnvMapAnimator.cs           | C#          |         23 |          4 |          9 |         36 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Examples & Extras\Scripts\ObjectSpin.cs               | C#          |         50 |          4 |         15 |         69 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Examples & Extras\Scripts\ShaderPropAnimator.cs       | C#          |         33 |          5 |         14 |         52 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Examples & Extras\Scripts\SimpleScript.cs             | C#          |         24 |         15 |         20 |         59 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Examples & Extras\Scripts\SkewTextExample.cs          | C#          |         95 |         18 |         46 |        159 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Examples & Extras\Scripts\TMP_DigitValidator.cs       | C#          |         19 |          5 |          4 |         28 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Examples & Extras\Scripts\TMP_ExampleScript_01.cs     | C#          |         37 |          9 |         19 |         65 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Examples & Extras\Scripts\TMP_FrameRateCounter.cs     | C#          |         91 |         11 |         33 |        135 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Examples & Extras\Scripts\TMP_PhoneNumberValidator.cs | C#          |         93 |          7 |          6 |        106 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Examples & Extras\Scripts\TMP_TextEventCheck.cs       | C#          |         56 |          1 |         17 |         74 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Examples & Extras\Scripts\TMP_TextEventHandler.cs     | C#          |        170 |         31 |         54 |        255 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Examples & Extras\Scripts\TMP_TextInfoDebugTool.cs    | C#          |        409 |         97 |        147 |        653 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Examples & Extras\Scripts\TMP_TextSelector_A.cs       | C#          |        100 |         17 |         41 |        158 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Examples & Extras\Scripts\TMP_TextSelector_B.cs       | C#          |        250 |        191 |        107 |        548 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Examples & Extras\Scripts\TMP_UiFrameRateCounter.cs   | C#          |         96 |          1 |         28 |        125 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Examples & Extras\Scripts\TMPro_InstructionOverlay.cs | C#          |         55 |          6 |         24 |         85 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Examples & Extras\Scripts\TeleType.cs                 | C#          |         40 |         15 |         28 |         83 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Examples & Extras\Scripts\TextConsoleSimulator.cs     | C#          |         79 |         13 |         29 |        121 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Examples & Extras\Scripts\TextMeshProFloatingText.cs  | C#          |        135 |         32 |         57 |        224 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Examples & Extras\Scripts\TextMeshSpawner.cs          | C#          |         46 |         13 |         21 |         80 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Examples & Extras\Scripts\VertexColorCycler.cs        | C#          |         48 |         13 |         24 |         85 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Examples & Extras\Scripts\VertexJitter.cs             | C#          |        105 |         26 |         44 |        175 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Examples & Extras\Scripts\VertexShakeA.cs             | C#          |         99 |         23 |         39 |        161 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Examples & Extras\Scripts\VertexShakeB.cs             | C#          |        112 |         29 |         44 |        185 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Examples & Extras\Scripts\VertexZoom.cs               | C#          |        112 |         32 |         48 |        192 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Examples & Extras\Scripts\WarpTextExample.cs          | C#          |         87 |         15 |         43 |        145 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader                | UnityShader |        109 |          2 |         33 |        144 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader                      | UnityShader |        112 |          3 |         31 |        146 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader                             | UnityShader |        109 |          2 |         33 |        144 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader                        | UnityShader |        243 |          4 |         71 |        318 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader                            | UnityShader |        241 |          4 |         66 |        311 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader                 | UnityShader |        188 |         10 |         50 |        248 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader                 | UnityShader |        183 |          8 |         50 |        241 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader                     | UnityShader |         82 |          4 |         21 |        107 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader                         | UnityShader |        183 |          8 |         50 |        241 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader                 | UnityShader |        103 |          8 |         28 |        139 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader                        | UnityShader |        122 |          4 |         33 |        159 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Shaders\TMP_SDF.shader                                | UnityShader |        243 |          4 |         71 |        318 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Shaders\TMP_Sprite.shader                             | UnityShader |         97 |          0 |         20 |        117 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Shaders\TMPro.cginc                                   | UnityShader |         63 |          2 |         20 |         85 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc                            | UnityShader |        122 |          2 |         34 |        158 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc                        | UnityShader |         62 |         10 |         14 |         86 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc                           | UnityShader |         76 |          7 |         19 |        102 |
+| c:\Users\marti\M-TowerDefense\Assets\TextMesh Pro\Sprites\EmojiOne.json                                 | JSON        |        155 |          0 |          2 |        157 |
+| c:\Users\marti\M-TowerDefense\Assets\UI\Scripts\UI_PlayerStatsManager.cs                                | C#          |         35 |          0 |          9 |         44 |
+| c:\Users\marti\M-TowerDefense\Assets\UI\Scripts\UI_WaveInformation.cs                                   | C#          |         25 |          0 |          9 |         34 |
+| Total                                                                                                   |             |      7,246 |        887 |      2,221 |     10,354 |
++---------------------------------------------------------------------------------------------------------+-------------+------------+------------+------------+------------+

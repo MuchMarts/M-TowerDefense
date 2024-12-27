@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5347c0bdbe6eb640928eb02b65705d4, type: 3}
+  m_Name: Magic_Bolt
+  m_EditorClassIdentifier: 
+  projectileName: Magic Bolt
+  baseDamage: 1
+  baseSpeed: 15
+  basePierce: 1
+  isHoming: 1
+  homingRadius: 1
+  isTimed: 1
+  timeToLive: 3
+  isSplash: 0
+  splashRadius: 0
+  splashDamage: 0
+  isTrueDamage: 0
+  buffs: []
+  priority: 0
+  targetType: 0
+  projectilePrefab: {fileID: 5964673318346720636, guid: 93aa545019fb983449fdd57359f8d27f, type: 3}

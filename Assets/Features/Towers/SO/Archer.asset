@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98e51fda3d6aac446aa7327971cabacc, type: 3}
+  m_Name: Archer
+  m_EditorClassIdentifier: 
+  towerName: Archer Tower
+  cost: 50
+  baseRange: 3
+  baseFireRate: 0.5
+  baseTurnSpeed: 5
+  ringStackSize: 3
+  towerPrefab: {fileID: 4023363838936799524, guid: 7e908d8da61559147bbd172586b66085, type: 3}
+  baseProjectile: {fileID: 11400000, guid: d1703300659b3eb42a68e7e24f3c8dc6, type: 2}

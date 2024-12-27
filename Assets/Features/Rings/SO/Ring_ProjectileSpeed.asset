@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55ff62786f2ab2349879aa30d0964c77, type: 3}
+  m_Name: Ring_ProjectileSpeed
+  m_EditorClassIdentifier: 
+  ringName: Projectile Speed Ring
+  cost: 50
+  adjacencyBonus: 0.5
+  effects:
+  - {fileID: 11400000, guid: b99eab8fc7f7482439c5b70ea84caee4, type: 2}
+  ringPrefab: {fileID: 6570342535834476379, guid: d9c1c9b31b02e514dad3cdc56484b1c8, type: 3}

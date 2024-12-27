@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98e51fda3d6aac446aa7327971cabacc, type: 3}
+  m_Name: Mage
+  m_EditorClassIdentifier: 
+  towerName: Mage Tower
+  cost: 200
+  baseRange: 2
+  baseFireRate: 1
+  baseTurnSpeed: 10
+  ringStackSize: 6
+  towerPrefab: {fileID: 110291833171155474, guid: 65fc7319b6a278f45acb7a3db78d8ae5, type: 3}
+  baseProjectile: {fileID: 11400000, guid: 288568ce4f1ba74429a0ca75174c5c94, type: 2}
