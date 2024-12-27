@@ -27,4 +27,4 @@ MonoBehaviour:
   buffs: []
   priority: 0
   targetType: 0
-  projectilePrefab: {fileID: 4168489110273282410, guid: c4a80b62078f4684db56c5f185d9f269, type: 3}
+  prefab: {fileID: 4168489110273282410, guid: c4a80b62078f4684db56c5f185d9f269, type: 3}

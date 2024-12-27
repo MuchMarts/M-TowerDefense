@@ -175,8 +175,8 @@ public class TowerTurretManager : MonoBehaviour
         Quaternion lookRotation = Quaternion.LookRotation(direction);
         Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
 
-        float clampedX = Mathf.Clamp(rotation.x, -20f, 20f);
-        float clampedZ = Mathf.Clamp(rotation.z, -20f, 20f);
+        float clampedX = Mathf.Clamp(rotation.x, -50f, 50f);
+        float clampedZ = Mathf.Clamp(rotation.z, -50f, 50f);
 
         gameObject.transform.rotation = Quaternion.Euler(clampedX, rotation.y, clampedZ);
         return direction;

@@ -1180,8 +1180,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 872567228}
-  - component: {fileID: 872567227}
-  - component: {fileID: 872567226}
   m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
@@ -1189,38 +1187,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &872567226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 872567225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 401e33b9d29368a4f8ee4b1428c9eeb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waveNumber: {fileID: 0}
-  timeToNextWave: {fileID: 0}
-  gameManager: {fileID: 0}
---- !u!114 &872567227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 872567225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09a96177ba6e4f447b3f7be89a8b111d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerStatsParent: {fileID: 0}
-  health: {fileID: 0}
-  points: {fileID: 0}
-  score: {fileID: 0}
-  player: {fileID: 0}
 --- !u!4 &872567228
 Transform:
   m_ObjectHideFlags: 0
@@ -2927,7 +2893,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2318454058338938761, guid: 804fad29c47bee14fb5c13238b87a0f2, type: 3}
       propertyPath: timeBetweenWaves
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2318454058338938761, guid: 804fad29c47bee14fb5c13238b87a0f2, type: 3}
       propertyPath: waves.Array.size

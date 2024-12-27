@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4593700343811107619}
   - component: {fileID: 3718876398355875152}
   - component: {fileID: 1839312608896843161}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy_Water_Medium
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -48,9 +48,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e60cffc48851d8478626103e359458a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  pierce_armour: 0
-  value: 6
 --- !u!114 &4593700343811107619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,7 +60,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cecc15189507dd42b1466eaf99ee4be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
   speedModifier: 1
 --- !u!54 &3718876398355875152
 Rigidbody:
@@ -176,6 +172,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: abb03029f3917df41a1e585bf7e631f8, type: 3}
       propertyPath: m_Name
       value: watter_character_grade_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: abb03029f3917df41a1e585bf7e631f8, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -15,8 +15,10 @@ MonoBehaviour:
   towerName: Mage Tower
   cost: 200
   baseRange: 2
-  baseFireRate: 1
+  baseFireRate: 2
   baseTurnSpeed: 10
   ringStackSize: 6
+  targetingType: 0
+  targetingPriority: 0
   towerPrefab: {fileID: 110291833171155474, guid: 65fc7319b6a278f45acb7a3db78d8ae5, type: 3}
   baseProjectile: {fileID: 11400000, guid: 288568ce4f1ba74429a0ca75174c5c94, type: 2}

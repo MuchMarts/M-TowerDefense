@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4908706773095069175}
   - component: {fileID: 5917110432890356419}
   - component: {fileID: 1706953424596066703}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy_Earth_Medium
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -48,10 +48,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e60cffc48851d8478626103e359458a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  pierce_armour: 4
-  damage_armour: 0
-  value: 10
 --- !u!114 &4908706773095069175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,7 +60,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cecc15189507dd42b1466eaf99ee4be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
   speedModifier: 1
 --- !u!54 &5917110432890356419
 Rigidbody:
@@ -177,6 +172,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0d22d8ddcb6838a4699f906ab0c1e6bc, type: 3}
       propertyPath: m_Name
       value: earth_character_grade_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0d22d8ddcb6838a4699f906ab0c1e6bc, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

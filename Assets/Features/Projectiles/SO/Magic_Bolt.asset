@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileName: Magic Bolt
   baseDamage: 1
-  baseSpeed: 15
+  baseSpeed: 1
   basePierce: 1
   isHoming: 1
-  homingRadius: 1
+  homingRadius: 3
   isTimed: 1
   timeToLive: 3
   isSplash: 0
@@ -27,4 +27,4 @@ MonoBehaviour:
   buffs: []
   priority: 0
   targetType: 0
-  projectilePrefab: {fileID: 5964673318346720636, guid: 93aa545019fb983449fdd57359f8d27f, type: 3}
+  prefab: {fileID: 5964673318346720636, guid: 93aa545019fb983449fdd57359f8d27f, type: 3}

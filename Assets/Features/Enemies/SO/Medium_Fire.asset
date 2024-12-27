@@ -18,4 +18,4 @@ MonoBehaviour:
   basePierceArmour: 1
   baseDamageArmour: 0
   baseKillValue: 2
-  enemyPrefab: {fileID: 4701985391885618128, guid: 67377acfa119cf045bf707cc3b351224, type: 3}
+  prefab: {fileID: 4701985391885618128, guid: 67377acfa119cf045bf707cc3b351224, type: 3}

@@ -64,7 +64,7 @@ MonoBehaviour:
   RingStackChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8358342890143779722}
+      - m_Target: {fileID: 4600518328201515852}
         m_TargetAssemblyTypeName: TowerTurretManager, Assembly-CSharp
         m_MethodName: OnRingStackChanged
         m_Mode: 1
@@ -147,6 +147,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6885524045507772411}
+  - component: {fileID: 4600518328201515852}
   m_Layer: 0
   m_Name: turretAnchor
   m_TagString: Untagged
@@ -170,6 +171,19 @@ Transform:
   - {fileID: 1480208334296150443}
   m_Father: {fileID: 3787658749373947992}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4600518328201515852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5846703821624558363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c76f0dda5fb2134b940b55c48bd4c5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePoint: {fileID: 1480208334296150443}
 --- !u!1001 &4259584594988898190
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -257,31 +271,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1120659696665999318, guid: 0d8250cd955d89b4386ea4b6b5e2d1fa, type: 3}
       insertIndex: 0
       addedObject: {fileID: 6885524045507772411}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5150733561214873798, guid: 0d8250cd955d89b4386ea4b6b5e2d1fa, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8358342890143779722}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d8250cd955d89b4386ea4b6b5e2d1fa, type: 3}
 --- !u!4 &3787658749373947992 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1120659696665999318, guid: 0d8250cd955d89b4386ea4b6b5e2d1fa, type: 3}
   m_PrefabInstance: {fileID: 4259584594988898190}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &8963853743299700552 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5150733561214873798, guid: 0d8250cd955d89b4386ea4b6b5e2d1fa, type: 3}
-  m_PrefabInstance: {fileID: 4259584594988898190}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8358342890143779722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8963853743299700552}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c76f0dda5fb2134b940b55c48bd4c5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firePoint: {fileID: 1480208334296150443}
