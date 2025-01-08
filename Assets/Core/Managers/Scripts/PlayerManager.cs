@@ -18,15 +18,19 @@ public class PlayerManager : MonoBehaviour
     private int score = 0;
     public UnityEvent OnScoreChange;
 
+    public static PlayerManager Instance;
+
     void Awake()
     {
         Debug.Log("Player Awake");
         towerManager = TowerManager.Instance;
+        Instance = this;
     }
 
     void Start()
     {
         OnHealthChange.Invoke();
+        OnScoreChange.Invoke();
         OnPointsChange.Invoke();
     }
 

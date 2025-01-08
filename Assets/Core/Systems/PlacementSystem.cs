@@ -4,37 +4,30 @@ public class PlacementSystem : MonoBehaviour
 {
     [SerializeField]
     private GameObject mouseIndicator, cellIndicator;
-    [SerializeField]
-    private InputManager inputManager;
+
+    public InputManager inputManager;
     [SerializeField]
     private Grid grid;
-    private int selectedTowerID = -1;
-    private PlayerManager playerManager;
+    private TowerSO selectedTowerSO = null;
+    private bool towerPlaced = false;
+    public static PlacementSystem Instance;
+    
+    void Awake()
+    {
+        Instance = this;
+    }
+
     private void Start()
     {
         StopPlacement();
-        playerManager = GetComponent<PlayerManager>();
     }
 
 
-    public void StartPlacement(int towerID)
+    public void StartPlacement(TowerSO tower)
     {
         StopPlacement();
-        if (towerID < 0 || towerID >= TowerManager.Instance.allTowerSO.Count)
-        {
-            Debug.LogError("Invalid tower ID: " + towerID);
-            return;
-        }
 
-        selectedTowerID = towerID;
-
-        GameObject selectedTower = TowerManager.Instance.GetTowerPrefab(selectedTowerID);
-        
-        if (selectedTower == null)
-        {
-            Debug.LogError("Tower not found");
-            return;
-        }
+        selectedTowerSO = tower;
 
         inputManager.IsPlacingTower = true;
 
@@ -52,20 +45,28 @@ public class PlacementSystem : MonoBehaviour
         Vector3 mousePos = inputManager.GetSelectedMapPosition();
         Vector3Int gridPos = grid.WorldToCell(mousePos);
         Vector3 gridCenter = grid.GetCellCenterWorld(gridPos);
+
         if (!inputManager.IsOverTower(gridCenter) || !inputManager.IsOverPath(gridCenter))
         {
             Debug.Log("Invalid placement");
             return;
         }
 
-        GameObject tower = Instantiate(TowerManager.Instance.GetTowerPrefab(selectedTowerID));
+        towerPlaced = true;
+        GameObject tower = Instantiate(selectedTowerSO.prefab);
         tower.transform.position = grid.CellToWorld(gridPos);
-        playerManager.AddTower(tower);
+        PlayerManager.Instance.AddTower(tower);
     }
 
     public void StopPlacement()
     {
-        selectedTowerID = -1;
+        if (!towerPlaced && selectedTowerSO != null)
+        {
+            PlayerManager.Instance.AddPoints(selectedTowerSO.cost);
+        }
+
+        towerPlaced = false;
+        selectedTowerSO = null;
         inputManager.IsPlacingTower = false;
         mouseIndicator.SetActive(false);
         cellIndicator.SetActive(false);

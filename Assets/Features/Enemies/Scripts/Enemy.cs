@@ -9,9 +9,8 @@ public class Enemy : MonoBehaviour
     private TowerManager towerManager = TowerManager.Instance;
     private BuffManager buffManager = BuffManager.Instance;
     private EnemyMovement enemyMovement;
-    void Start()
+    void Start() // This might cause bugs with object pooling
     {
-        EnemyManager.Instance.RegisterEnemy(gameObject);
         enemyMovement = GetComponent<EnemyMovement>();
         health = enemyData.baseHealth;
     }
@@ -22,7 +21,7 @@ public class Enemy : MonoBehaviour
     } 
 
     // trueDamage ignores armour, source is the object that caused the damage
-    public void TakeDamage(float damage, GameObject source, bool trueDamage = false, List<Buff> buffs = null)
+    public void TakeDamage(float damage, bool trueDamage = false, List<BuffSO> buffs = null)
     {
         float dmg = damage;
 
@@ -35,24 +34,21 @@ public class Enemy : MonoBehaviour
         
         if (health <= 0)
         {
-            if (source.GetComponent<Projectile>() != null)
-            {
-                towerManager.AddKill(enemyData.baseKillValue);
-            }
+            towerManager.AddKill(enemyData.baseKillValue);
             Die();
         }
 
         // If not dead, apply buffs
         if (buffs != null)
         {
-            foreach (Buff buff in buffs)
+            foreach (BuffSO buff in buffs)
             {
                 buffManager.ApplyBuff(gameObject.GetComponent<Enemy>(), buff);
             }
         }
 
     }
-
+    
     public void Die(){
         EnemyManager.Instance.UnregisterEnemy(enemyData, gameObject);
     }

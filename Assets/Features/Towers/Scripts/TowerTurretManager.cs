@@ -4,7 +4,7 @@ using UnityEngine;
 public class TowerTurretManager : MonoBehaviour
 {
 
-    private TowerSO towerData;    
+    public TowerSO towerData;    
     public Transform firePoint;
     
     // Base attributes can be modified by rings
@@ -74,7 +74,7 @@ public class TowerTurretManager : MonoBehaviour
         fireRate = towerData.baseFireRate;
         projectile = towerData.baseProjectile;
 
-        ProjectileModifier projMod = new(projectile.baseDamage, projectile.basePierce, projectile.baseSpeed);
+        ProjectileModifier projMod = new(projectile);
         projectileModifier = projMod;
     }
 
@@ -121,13 +121,31 @@ public class TowerTurretManager : MonoBehaviour
                     break;
                 case RingEffectType.Projectile:
                     projectile = (ProjectileSO)effect.value;
-                    projectileModifier.UpdateProjectile(projectile);
+                    projectileModifier.ChangeProjectile(projectile);
                     break;
                 case RingEffectType.isHoming:
                     projectileModifier.isHoming = (bool)effect.value;
                     break;
                 case RingEffectType.HomingRange:
-                    projectileModifier.homingRadius = (float)effect.value;
+                    projectileModifier.homingRadius += (float)effect.value;
+                    break;
+                case RingEffectType.isTimed:
+                    projectileModifier.isTimed = (bool)effect.value;
+                    break;
+                case RingEffectType.TimeToLive:
+                    projectileModifier.timeToLive += (float)effect.value;
+                    break;
+                case RingEffectType.isSplash:
+                    projectileModifier.isSplash = (bool)effect.value;
+                    break;
+                case RingEffectType.SplashRadius:
+                    projectileModifier.splashRadius += (float)effect.value;
+                    break;
+                case RingEffectType.isTrueDamage:
+                    projectileModifier.isTrueDamage = (bool)effect.value;
+                    break;
+                case RingEffectType.Buff:
+                    projectileModifier.AddBuff((BuffSO)effect.value);
                     break;
                 default:
                     Debug.LogWarning("Ring effect not implemented: " + effect.type);
@@ -139,6 +157,29 @@ public class TowerTurretManager : MonoBehaviour
         {
             Debug.LogError("Projectile modifier is null, Tower: " + gameObject.transform.parent.name);
         }
+        DebugAllModifiers();
+    }
+
+    void DebugAllModifiers()
+    {
+        string debugString = "Projectile modifiers: \n";
+        debugString += "Damage: " + projectileModifier.damage + "\n";
+        debugString += "Pierce: " + projectileModifier.pierce + "\n";
+        debugString += "Speed: " + projectileModifier.speed + "\n";
+        debugString += "Homing: " + projectileModifier.isHoming + "\n";
+        debugString += "Homing Radius: " + projectileModifier.homingRadius + "\n";
+        debugString += "Timed: " + projectileModifier.isTimed + "\n";
+        debugString += "Time to live: " + projectileModifier.timeToLive + "\n";
+        debugString += "Splash: " + projectileModifier.isSplash + "\n";
+        debugString += "Splash Radius: " + projectileModifier.splashRadius + "\n";
+        debugString += "True Damage: " + projectileModifier.isTrueDamage + "\n";
+        debugString += "Buffs: ";
+        projectileModifier.buffs.ForEach(buff => debugString += buff.buffName + ", ");
+        debugString += "\n";
+        debugString += "Projectile: " + projectile.projectileName + "\n";
+        debugString += "Fire rate: " + fireRate + "\n";
+        debugString += "Range: " + range + "\n";
+        Debug.Log(debugString);
     }
 
     void UpdateTarget()
@@ -241,5 +282,21 @@ public class TowerTurretManager : MonoBehaviour
     {
         Vector3 position = transform.position;
         Gizmos.DrawWireSphere(position, range);
-    }    
+    }
+
+    public GameObject ShowTurretRange(GameObject rangeIndicator)
+    {
+        Vector3 position = transform.position;
+        
+        GameObject indicator = Instantiate(rangeIndicator);
+        indicator.transform.position = new Vector3(position.x, position.y - 1f, position.z);
+        indicator.transform.localScale = new Vector3(range * 2, 1, range * 2);
+        indicator.SetActive(true);
+        return indicator;
+    }
+
+    public void HideTurretRange(GameObject rangeIndicator)
+    {
+        Destroy(rangeIndicator);
+    }
 }

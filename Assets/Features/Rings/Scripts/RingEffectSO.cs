@@ -3,15 +3,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewRingEffectSO", menuName = "Game/RingEffect")]
 public class RingEffectSO : ScriptableObject
 {
-    public string effectName;
-    public RingEffectType type;
+    public string ringEffectName;
+    public RingEffectType effectType;
     public ValueType valueType;
 
     public string stringValue;
     public int intValue;
     public float floatValue;
     public bool boolValue;
-    public ScriptableObject scriptableObject;
+    public ProjectileSO projectileValue;
     public BuffSO buffValue;
     
     public enum ValueType
@@ -20,7 +20,7 @@ public class RingEffectSO : ScriptableObject
         Int,
         Float,
         Bool,
-        ScriptableObject,
+        ProjectileSO,
         BuffSO
     }
     public bool isAdjacencyBonus;

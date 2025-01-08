@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -27,17 +25,20 @@ public class UI_PlayerStatsManager : MonoBehaviour
 
     public void UpdateHealth()
     {
-        health.GetComponent<TextMeshProUGUI>().text = "Health: " + playerManager.GetHealth();
+        TextMeshProUGUI textObject = health.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
+        textObject.text = "Health: " + playerManager.GetHealth();
     }
 
     public void UpdatePoints()
     {
-        points.GetComponent<TextMeshProUGUI>().text = "Points: " + playerManager.GetPoints();
+        TextMeshProUGUI textObject = points.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
+        textObject.text = "Points: " + playerManager.GetPoints();
     }
 
     public void UpdateScore()
     {
-        score.GetComponent<TextMeshProUGUI>().text = "Score: " + playerManager.GetScore();
+        TextMeshProUGUI textObject = score.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
+        textObject.text = "Score: " + playerManager.GetScore();
     }
     
 }

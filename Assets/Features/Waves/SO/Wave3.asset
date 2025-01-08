@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Wave3
   m_EditorClassIdentifier: 
   subWaves:
-  - {fileID: 11400000, guid: 5da5e3c0c1d1d934abdb077f8e086570, type: 2}
-  - {fileID: 11400000, guid: 49a40b2143d77c0479be86e0b7445487, type: 2}
-  - {fileID: 11400000, guid: 1d61d6e85503641439824daaa29140cf, type: 2}
-  - {fileID: 11400000, guid: 621024a5048f70543802e222b8d89a33, type: 2}
+  - {fileID: 11400000, guid: 9fadc017c625e0c48ada5d51d34064af, type: 2}
+  - {fileID: 11400000, guid: d09e35381f8a8434e83ae7b25b84fc51, type: 2}
+  - {fileID: 11400000, guid: ca8f1c4710bc9804cac6a30ab8999fd0, type: 2}
+  - {fileID: 11400000, guid: 9e1b55f13195e6c49aefaeca50232f01, type: 2}
+  - {fileID: 11400000, guid: d1d24fa5985f0fa4fa4658da158f8d14, type: 2}

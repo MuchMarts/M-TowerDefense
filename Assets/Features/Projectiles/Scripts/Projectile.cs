@@ -24,16 +24,16 @@ public class Projectile : MonoBehaviour
 
     private bool isTrueDamage = false;
 
-    private List<Buff> buffs;
+    private List<BuffSO> buffs;
 
     private TargetPriority priority = TargetPriority.Closest;
     private TargetType targetType = TargetType.Enemy;
 
     void Start()
     {
-        damage = projectileData.baseDamage;
-        pierce = projectileData.basePierce;
-        speed = projectileData.baseSpeed;
+        damage = projectileData.damage;
+        pierce = projectileData.pierce;
+        speed = projectileData.speed;
     }
 
     // TODO: Target should be above the ground, not on the ground. 
@@ -49,8 +49,11 @@ public class Projectile : MonoBehaviour
         }
     }
     
+    private bool isLookingForTargets = false;
     private void UpdateTarget()
     {
+        isLookingForTargets = true;
+        if (!isHoming) return;
         if (targetTransform != null)
         {
             return;
@@ -81,14 +84,14 @@ public class Projectile : MonoBehaviour
     }
 
     void HitTarget(Collider c, bool isEnemy = true)
-    {
+    {   
         if (isSplash)
         {
             List<GameObject> inRangeTargets = EnemyManager.Instance.GetEnemiesInRange(gameObject.transform.position, splashRadius);
             foreach (GameObject enemy in inRangeTargets)
             {
                 if (enemy == null) continue;
-                enemy.GetComponent<Enemy>().TakeDamage(damage, gameObject, isTrueDamage, buffs);
+                enemy.GetComponent<Enemy>().TakeDamage(damage, isTrueDamage, buffs);
                 // Could be changed so the splash is triggered by hitting an enemy thus allowing for multiple splashes
                 DestroyProjectile();
             }
@@ -105,7 +108,7 @@ public class Projectile : MonoBehaviour
         {
             DestroyProjectile();
         } else {
-            c.GetComponent<Enemy>().TakeDamage(damage, gameObject, isTrueDamage, buffs);
+            c.GetComponent<Enemy>().TakeDamage(damage, isTrueDamage, buffs);
         }
 
         pierce -= c.GetComponent<Enemy>().GetPierceArmour();
@@ -113,6 +116,12 @@ public class Projectile : MonoBehaviour
 
     void Update()
     {
+        // Turn on homing if it's not
+        if (isHoming && !isLookingForTargets)
+        {
+            UpdateTarget();
+        }
+
         if (target == null)
         {
             Destroy(gameObject);
@@ -164,6 +173,12 @@ public class Projectile : MonoBehaviour
         speed = projectileModifier.speed;
         isHoming = projectileModifier.isHoming;
         homingRadius = projectileModifier.homingRadius;
+        isTimed = projectileModifier.isTimed;
+        timeToLive = projectileModifier.timeToLive;
+        isSplash = projectileModifier.isSplash;
+        splashRadius = projectileModifier.splashRadius;
+        isTrueDamage = projectileModifier.isTrueDamage;
+        buffs = projectileModifier.buffs;
     }
 }
 

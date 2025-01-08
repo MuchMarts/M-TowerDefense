@@ -5,24 +5,24 @@ using UnityEngine;
 public class ProjectileSO : ScriptableObject
 {    
     public string projectileName;
-    public float baseDamage;
-    public float baseSpeed;
-    public int basePierce;
+    public float damage = 1;
+    public float speed = 1;
+    public int pierce = 1;
     
     public bool isHoming = false;
-    public float homingRadius;
+    public float homingRadius = 0;
     
     public bool isTimed = false;
-    public float timeToLive;
+    public float timeToLive = 0;
 
     public bool isSplash = false;
-    public float splashRadius;
-    public float splashDamage;
+    public float splashRadius = 0;
 
     public bool isTrueDamage = false;
 
-    public BuffSO[] buffs;
+    public List<BuffSO> buffs = new();
 
+    // Remove this as unnecessary
     public TargetPriority priority = TargetPriority.Closest;
     public TargetType targetType = TargetType.Enemy;
     

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ff62786f2ab2349879aa30d0964c77, type: 3}
   m_Name: Ring_ProjectileSpeed
   m_EditorClassIdentifier: 
-  ringName: Projectile Speed Ring
-  cost: 50
+  ringName: Projectile Speed
+  cost: 10
   adjacencyBonus: 0.5
   effects:
   - {fileID: 11400000, guid: b99eab8fc7f7482439c5b70ea84caee4, type: 2}
-  ringPrefab: {fileID: 6570342535834476379, guid: d9c1c9b31b02e514dad3cdc56484b1c8, type: 3}
+  prefab: {fileID: 6570342535834476379, guid: d9c1c9b31b02e514dad3cdc56484b1c8, type: 3}

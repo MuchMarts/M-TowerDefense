@@ -15,8 +15,14 @@ public class RingSystem : MonoBehaviour
     // Variables for Ring Placement
     private TowerRingManager ringOriginTowerManager;    
     private GameObject currentRing = null;
-    private int selectedNewRingID = -1;
+    private RingSO selectedNewRingSO = null;
+    private bool ringPlaced = false;
+    public static RingSystem Instance;
 
+    void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -71,18 +77,13 @@ public class RingSystem : MonoBehaviour
     }
 
     // Start placement with a new ring
-    public void StartPlacementWithNewRing(int ringID)
+    public void StartPlacementWithNewRing(RingSO _ring)
     {
         StopPlacement();
         
-        if (ringID < 0 || ringID >= RingManager.Instance.AllRingSO.Count)
-        {
-            Debug.LogError("Invalid ring ID");
-            return;
-        }
-        selectedNewRingID = ringID;
+        selectedNewRingSO = _ring;
 
-        GameObject ring = Instantiate(RingManager.Instance.GetRingPrefab(ringID));
+        GameObject ring = Instantiate(selectedNewRingSO.prefab);
         ring.SetActive(false);
         currentRing = ring;
 
@@ -95,7 +96,7 @@ public class RingSystem : MonoBehaviour
     private void StartPlacementWithExistingRing(Ring ring, TowerRingManager tower)
     {
         StopPlacement();
-        currentRing = ring.transform.parent.gameObject;
+        currentRing = ring.gameObject;
         ringOriginTowerManager = tower;
 
         inputManager.OnClicked += AddRing;
@@ -122,8 +123,6 @@ public class RingSystem : MonoBehaviour
         if (tower == null)
         {
             Debug.Log("No Tower Selected");
-            if (selectedNewRingID != -1) Destroy(currentRing);
-            StopPlacement();
             return;
         }
 
@@ -132,16 +131,12 @@ public class RingSystem : MonoBehaviour
         if (towerBehaviour == null)
         {
             Debug.LogError("No tower behaviour found");
-            if (selectedNewRingID != -1) Destroy(currentRing);
-            StopPlacement();
             return;
         }
 
         if (towerBehaviour.IsTowerFull())
         {
             Debug.Log("Tower is full");
-            if (selectedNewRingID != -1) Destroy(currentRing);
-            StopPlacement();
             return;
         }
 
@@ -152,6 +147,7 @@ public class RingSystem : MonoBehaviour
         }
         else 
         {
+            ringPlaced = true;
             towerBehaviour.AddRing(currentRing);
             Debug.Log("Ring: " + currentRing.name + " added to tower: " + towerBehaviour.name + " at position: " + gridPos);
         }
@@ -161,9 +157,15 @@ public class RingSystem : MonoBehaviour
 
     private void StopPlacement()
     {
+        if (!ringPlaced && selectedNewRingSO != null && ringOriginTowerManager == null)
+        {
+            PlayerManager.Instance.AddPoints(selectedNewRingSO.cost);
+        }
+
+        ringPlaced = false;
         inputManager.OnClicked -= AddRing;
         inputManager.OnExit -= StopPlacement;
-        selectedNewRingID = -1;
+        selectedNewRingSO = null;
         mouseIndicator.SetActive(false);
         
         // Reset the current ring and tower

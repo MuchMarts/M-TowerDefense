@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ff62786f2ab2349879aa30d0964c77, type: 3}
   m_Name: Ring_FireRate
   m_EditorClassIdentifier: 
-  ringName: FireRate Ring
-  cost: 50
+  ringName: FireRate
+  cost: 10
   adjacencyBonus: 0.7
   effects:
   - {fileID: 11400000, guid: d710e0b5887cc0d42b3b01ed61eef00b, type: 2}
-  ringPrefab: {fileID: 1159260016396177743, guid: 2f3fd516b53cb2c47b50bbca8b3496bd, type: 3}
+  prefab: {fileID: 1159260016396177743, guid: 2f3fd516b53cb2c47b50bbca8b3496bd, type: 3}

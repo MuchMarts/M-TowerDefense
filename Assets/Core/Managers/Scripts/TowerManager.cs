@@ -10,16 +10,24 @@ public class TowerManager : MonoBehaviour
     [SerializeField]
     private GameObject player;
     private PlayerManager playerManager;
-
+    public Grid grid;
+    public LayerMask towerLayerMask;
+    public TowerTurretManager selectedTower;
     void Awake()
     {
         Instance = this;
         playerManager = player.GetComponent<PlayerManager>();
     }
 
+    void Start()
+    {
+        PlacementSystem.Instance.inputManager.OnClicked += GetSelectTower;
+        PlacementSystem.Instance.inputManager.OnExit += UnselectTower;
+    }
+
     internal GameObject GetTowerPrefab(int towerID)
     {
-        return allTowerSO[towerID].towerPrefab;
+        return allTowerSO[towerID].prefab;
     }
 
     public void RegisterTower(GameObject tower)
@@ -48,4 +56,33 @@ public class TowerManager : MonoBehaviour
         playerManager.AddScore(amount);
     }
 
+    private GameObject GetTowerAtPosition(Vector3Int gridPos)
+    {
+        Collider[] intersecting = Physics.OverlapSphere(grid.GetCellCenterWorld(gridPos), 0.01f, towerLayerMask);
+        if (intersecting.Length > 0) return intersecting[0].gameObject;
+        return null;
+    }
+    void GetSelectTower()
+    {
+        Vector3 mapPosition =  PlacementSystem.Instance.inputManager.GetSelectedMapPosition();
+        Vector3Int gridPos = grid.WorldToCell(mapPosition);
+    
+        GameObject _selectedTower = GetTowerAtPosition(gridPos);
+
+        if (_selectedTower == null) return;
+
+        selectedTower = _selectedTower.GetComponentInChildren<TowerTurretManager>();
+
+        if (selectedTower == null) {
+            Debug.LogError("Cant select tower: No tower behaviour found");
+            return;
+        }
+        Debug.Log("Tower Selected");
+    }
+
+    void UnselectTower()
+    {
+        if (selectedTower == null) return;
+        selectedTower = null;
+    }
 }

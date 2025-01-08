@@ -18,5 +18,7 @@ MonoBehaviour:
   baseFireRate: 0.5
   baseTurnSpeed: 5
   ringStackSize: 3
-  towerPrefab: {fileID: 4023363838936799524, guid: 7e908d8da61559147bbd172586b66085, type: 3}
+  targetingType: 0
+  targetingPriority: 0
+  prefab: {fileID: 4023363838936799524, guid: 7e908d8da61559147bbd172586b66085, type: 3}
   baseProjectile: {fileID: 11400000, guid: d1703300659b3eb42a68e7e24f3c8dc6, type: 2}

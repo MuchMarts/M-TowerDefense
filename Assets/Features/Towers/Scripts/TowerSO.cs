@@ -11,6 +11,6 @@ public class TowerSO : ScriptableObject
     public int ringStackSize;
     public TargetType targetingType;
     public TargetPriority targetingPriority;
-    public GameObject towerPrefab;
+    public GameObject prefab;
     public ProjectileSO baseProjectile;
 }

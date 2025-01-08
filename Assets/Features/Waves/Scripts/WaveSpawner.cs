@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -14,8 +12,8 @@ public class WaveSpawner : MonoBehaviour
     private float timeBetweenWaves = 10f;
 
     private int waveIndex = 0;
-    private float countdown = 0f;
-
+    private float countdown = 2f;
+    private int subWavesBeingSpawned = 0;
     public UnityEvent WavesCompleted;
     public UnityEvent WaveStarted;
     public UnityEvent WaveEnded;
@@ -63,29 +61,37 @@ public class WaveSpawner : MonoBehaviour
 
     private bool HaveAllSubWavesFinished()
     {
-        return waves[waveIndex].subWaves.All(subWave => subWave.isFinished);
+        return subWavesBeingSpawned == 0;
     }
 
     IEnumerator SpawnWave()
     {   
-        // Spawn enemies
-        for (int i = 0; i < waves[waveIndex].subWaves.Count() ; i++)
+        subWavesBeingSpawned = waves[waveIndex].subWaves.Count();
+        
+        for (int i = 0; i < waves[waveIndex].subWaves.Count(); i++)
         {
-            StartCoroutine(SpawnSubWave(waves[waveIndex].subWaves[i]));
+            yield return StartCoroutine(SpawnSubWave(waves[waveIndex].subWaves[i]));
         }
         waveIndex++;
-        yield return null;
     }
 
     IEnumerator SpawnSubWave(SubWaveSO subWave)
     {
-        yield return new WaitForSeconds(subWave.delay);
-        for (int i = 0; i < subWave.count; i++)
+        for (int i = 0; i < subWave.enemyGroups.Count(); i++)
         {
-            SpawnEnemy(subWave.enemySO);
-            yield return new WaitForSeconds(1f / subWave.rate);
+            yield return StartCoroutine(SpawnEnemyGroup(subWave.enemyGroups[i])); 
         }
-        subWave.isFinished = true;
+        subWavesBeingSpawned--;
+    }
+
+    IEnumerator SpawnEnemyGroup(EnemyGroupSO enemyGroup)
+    {
+        yield return new WaitForSeconds(enemyGroup.delay);
+        for (int i = 0; i < enemyGroup.count; i++)
+        {
+            SpawnEnemy(enemyGroup.enemySO);
+            yield return new WaitForSeconds(1f / enemyGroup.rate);
+        }
     }
 
     void SpawnEnemy(EnemySO enemySO)
@@ -97,7 +103,9 @@ public class WaveSpawner : MonoBehaviour
         }
 
         GameObject enemy = GameObjectPoolManager.Instance.GetObject(enemySO, enemySO.prefab, Waypoints.points[0].position, Quaternion.identity);
-        enemy.GetComponent<Enemy>().SetEnemyData(enemySO);
-        enemy.GetComponent<Enemy>().ResetEnemyData();
+        Enemy enemyComponent = enemy.GetComponent<Enemy>();
+        enemyComponent.SetEnemyData(enemySO);
+        enemyComponent.ResetEnemyData();
+        EnemyManager.Instance.RegisterEnemy(enemy);
     }
 }

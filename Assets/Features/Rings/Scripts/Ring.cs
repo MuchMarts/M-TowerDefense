@@ -13,8 +13,6 @@ public class Ring : MonoBehaviour
     float spin_speed;
     float spin_direction;
     
-    
-    
     public void Start()
     {
         spin_direction = UnityEngine.Random.Range(1, 3) == 1 ? 1 : -1;
@@ -43,7 +41,7 @@ public class Ring : MonoBehaviour
         for (int i = 0; i < neighbourRings.Count; i++)
         {
             // Compare self with neighbour rings, if the same type (same prefab) increment count
-            if (gameObject.GetComponent<Ring>().GetType() == neighbourRings[i].GetComponent<Ring>().GetType())
+            if (gameObject.GetComponent<Ring>().ringData == neighbourRings[i].GetComponent<Ring>().ringData)
             {
                 count++;
             }
@@ -65,26 +63,33 @@ public class Ring : MonoBehaviour
             RingEffect ringEffect = new ();
             ringEffect.SetValues(effectSO);
             
-            if (effectSO.isAdjacencyBonus)
-            {
-                // Example 1: 10 + 10 * 2 * 0.1 = 12
-                // Example 2: 1.2 + 1.2 * 2 * 0.1 = 1.44
-                switch(effectSO.valueType)
-                {
-                    case RingEffectSO.ValueType.Int:
-                        ringEffect.value = (float)effectSO.intValue + (float)effectSO.intValue * AdjacenctCount() * ringData.adjacencyBonus;
-                        break;
-                    case RingEffectSO.ValueType.Float:
-                        ringEffect.value = effectSO.floatValue + effectSO.floatValue * AdjacenctCount() * ringData.adjacencyBonus;
-                        break;
-                    default:
-                        throw new Exception("Unhandled value type");
-                }
-            }
+            // Example 1: 10 + 10 * 2 * 0.1 = 12
+            // Example 2: 1.2 + 1.2 * 2 * 0.1 = 1.44
+            ringEffect.value = CalculateTotalEffect(ringEffect, effectSO);
+        
             processedEffects.Add(ringEffect);
         }
 
         return processedEffects;
+    }
+    object CalculateTotalEffect(RingEffect effect, RingEffectSO effectSO)
+    {
+        if (!effect.isAdjacencyBonus) {
+            return effect.value;
+        }
+        
+        float adjancecyBonus = AdjacenctCount() * ringData.adjacencyBonus;
+
+        switch (effectSO.valueType)
+        {
+            case RingEffectSO.ValueType.Int:
+                return effectSO.intValue + adjancecyBonus;
+            case RingEffectSO.ValueType.Float:
+                return effectSO.floatValue + adjancecyBonus;
+            default:
+                return effect.value;
+        }
+
     }
 }
 
@@ -101,8 +106,14 @@ public enum RingEffectType
     pFireRate,
     Projectile,
     ProjectileSpeed,
+    Buff,
     isHoming,
     HomingRange,
+    isTimed,
+    TimeToLive,
+    isSplash,
+    SplashRadius,
+    isTrueDamage,
     RingReadManipulation,
 }
 

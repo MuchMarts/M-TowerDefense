@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ff62786f2ab2349879aa30d0964c77, type: 3}
   m_Name: Ring_Range
   m_EditorClassIdentifier: 
-  ringName: Range Ring
-  cost: 50
+  ringName: Range
+  cost: 10
   adjacencyBonus: 0.3
   effects:
   - {fileID: 11400000, guid: 2b360310e3cbe92459c388373f0b89e9, type: 2}
-  ringPrefab: {fileID: 2058222264906062304, guid: 516f6a47d5235234385df82f84b8097e, type: 3}
+  prefab: {fileID: 2058222264906062304, guid: 516f6a47d5235234385df82f84b8097e, type: 3}

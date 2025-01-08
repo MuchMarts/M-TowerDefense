@@ -19,54 +19,34 @@ public class BuffManager : MonoBehaviour
         Instance = this;
     }
 
-    private bool HasBuff(Enemy enemy, BuffType type)
+    private bool HasBuff(Enemy enemy, BuffSO _buffSO)
     {
         if (activeBuffs.ContainsKey(enemy))
         {
-            return activeBuffs[enemy].Exists(b => b.type == type);
+            return activeBuffs[enemy].Exists(b => b.buffSO == _buffSO);
         }
         return false;
     }
 
-    public void ApplyBuff(Enemy enemy, Buff buff)
+    public void ApplyBuff(Enemy enemy, BuffSO buffSO)
     {
         if (!activeBuffs.ContainsKey(enemy))
         {
             activeBuffs.Add(enemy, new List<Buff>());
         }
 
-        // Check if the buff is already applied
-        // Not all buffs can be stacked
-        switch (buff.type)
+
+        if( HasBuff(enemy, buffSO) )
         {
-            case BuffType.Regen:
-                if (HasBuff(enemy, BuffType.Regen)) return;
-                activeBuffs[enemy].Add(buff);
-                break;
-            case BuffType.Poison:
-                if (HasBuff(enemy, BuffType.Poison)) return;
-                activeBuffs[enemy].Add(buff);
-                break;
-            case BuffType.Bleed:
-                if (HasBuff(enemy, BuffType.Bleed)) return;
-                activeBuffs[enemy].Add(buff);
-                break;
-            case BuffType.Slow:
-                if (HasBuff(enemy, BuffType.Slow)) return;
-                activeBuffs[enemy].Add(buff);
-                break;
-            case BuffType.Stun:
-                if (HasBuff(enemy, BuffType.Stun)) return;
-                activeBuffs[enemy].Add(buff);
-                break;
-            case BuffType.Speed:
-                if (HasBuff(enemy, BuffType.Speed)) return;
-                activeBuffs[enemy].Add(buff);
-                break;
-            default:
-                Debug.LogError("Buff type not implemented: " + buff.type);
-                return;
+            if (buffSO.canStack)
+            {   
+                activeBuffs[enemy].Find(b => b.buffSO == buffSO).stackCount++;
+            }
+            return;
         }
+
+        Buff buff = new Buff(buffSO);
+        activeBuffs[enemy].Add(buff);
 
         StartCoroutine(StartBuff(enemy, buff));
     }
@@ -80,23 +60,23 @@ public class BuffManager : MonoBehaviour
             case BuffType.Regen:
                 for (int i = 0; i < ticks; i++)
                 {
-                    enemy.Heal(buff.value);
+                    enemy.Heal(buff.Value);
                     yield return new WaitForSeconds(buff.duration / buff.tickRate);
                 }
                 break;
             case BuffType.Poison:
                 for (int i = 0; i < ticks; i++)
                 {
-                    enemy.TakeDamage(buff.value, buff.source);
+                    enemy.TakeDamage(buff.Value, buff.source);
                     yield return new WaitForSeconds(buff.duration / buff.tickRate);
                 }
                 break;
             case BuffType.Bleed:
                 yield return new WaitForSeconds(buff.duration);
-                enemy.TakeDamage(buff.value, buff.source);
+                enemy.TakeDamage(buff.Value, buff.source);
                 break;
             case BuffType.Slow:
-                enemy.ChangeSpeedModifier(buff.value);
+                enemy.ChangeSpeedModifier(buff.Value);
                 yield return new WaitForSeconds(buff.duration);
                 enemy.ChangeSpeedModifier(1);
                 break;
@@ -106,7 +86,7 @@ public class BuffManager : MonoBehaviour
                 enemy.ChangeSpeedModifier(1);
                 break;
             case BuffType.Speed:
-                enemy.ChangeSpeedModifier(buff.value);
+                enemy.ChangeSpeedModifier(buff.Value);
                 yield return new WaitForSeconds(buff.duration);
                 enemy.ChangeSpeedModifier(1);
                 break;

@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5156bf05c269794bbd38316b1580c1a, type: 3}
   m_Name: MagicBoltProjectile
   m_EditorClassIdentifier: Assembly-CSharp::RingEffectSO
-  effectName: Magic Bolt Projectile
-  type: 8
+  ringEffectName: 
+  effectType: 8
   valueType: 4
   stringValue: 
   intValue: 1
   floatValue: 0
   boolValue: 0
-  scriptableObject: {fileID: 11400000, guid: 288568ce4f1ba74429a0ca75174c5c94, type: 2}
+  projectileValue: {fileID: 11400000, guid: 288568ce4f1ba74429a0ca75174c5c94, type: 2}
   buffValue: {fileID: 0}
   isAdjacencyBonus: 0

@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5156bf05c269794bbd38316b1580c1a, type: 3}
   m_Name: pFireRate
   m_EditorClassIdentifier: 
-  effectName: '% FireRate Increase'
-  type: 5
+  ringEffectName: 
+  effectType: 7
   valueType: 2
   stringValue: 
   intValue: 0
-  floatValue: 0.2
+  floatValue: 1.2
   boolValue: 0
-  scriptableObject: {fileID: 0}
+  projectileValue: {fileID: 0}
   buffValue: {fileID: 0}
   isAdjacencyBonus: 1

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ff62786f2ab2349879aa30d0964c77, type: 3}
   m_Name: Ring_Arrow
   m_EditorClassIdentifier: 
-  ringName: Arrow Ring
-  cost: 150
+  ringName: Arrow
+  cost: 10
   adjacencyBonus: 0
   effects:
   - {fileID: 11400000, guid: 3f66c45a51ed98241adb9c61b793be8d, type: 2}
-  ringPrefab: {fileID: 4511947856618953161, guid: 7a8f5c91c431c454e9d62cbd73be7153, type: 3}
+  prefab: {fileID: 4511947856618953161, guid: 7a8f5c91c431c454e9d62cbd73be7153, type: 3}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wave2
   m_EditorClassIdentifier: 
   subWaves:
-  - {fileID: 11400000, guid: f9a2ba067ed297b4aa4e98899f6dea6e, type: 2}
-  - {fileID: 11400000, guid: 8a98bd0fb1f54f347b3beef97d7f6dc9, type: 2}
-  - {fileID: 11400000, guid: 9d0fd2d41106aee45ba3a6d71fe3cb98, type: 2}
-  - {fileID: 11400000, guid: 5ebd875823d5c3a469cb6a82d930e8bb, type: 2}
+  - {fileID: 11400000, guid: e0bfc58f85ef4074cb36355e0463d38e, type: 2}
+  - {fileID: 11400000, guid: 5a112422c86a753439ed73144567c67d, type: 2}
+  - {fileID: 11400000, guid: e0bfc58f85ef4074cb36355e0463d38e, type: 2}
+  - {fileID: 11400000, guid: d09e35381f8a8434e83ae7b25b84fc51, type: 2}

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ff62786f2ab2349879aa30d0964c77, type: 3}
   m_Name: Ring_Damage
   m_EditorClassIdentifier: 
-  ringName: Damage Ring
-  cost: 100
+  ringName: Damage
+  cost: 10
   adjacencyBonus: 0.5
   effects:
   - {fileID: 11400000, guid: d5e6fc7f6435ca2478fe87b460a16145, type: 2}
-  ringPrefab: {fileID: 6251648726896684622, guid: a7d22d5ea9ae91d48a439201fcff4348, type: 3}
+  prefab: {fileID: 6251648726896684622, guid: a7d22d5ea9ae91d48a439201fcff4348, type: 3}

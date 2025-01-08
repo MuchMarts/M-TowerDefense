@@ -13,16 +13,15 @@ MonoBehaviour:
   m_Name: Arrow
   m_EditorClassIdentifier: 
   projectileName: Arrow
-  baseDamage: 2
-  baseSpeed: 50
-  basePierce: 2
+  damage: 1
+  speed: 30
+  pierce: 2
   isHoming: 0
   homingRadius: 0
   isTimed: 0
   timeToLive: 0
   isSplash: 0
   splashRadius: 0
-  splashDamage: 0
   isTrueDamage: 0
   buffs: []
   priority: 0

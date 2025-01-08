@@ -8,7 +8,5 @@ public class BuffSO : ScriptableObject
     public float duration;
     public float tickRate; // Per second
     public float value;
-    public bool canStack;
-    public GameObject source;
-    
+    public bool canStack;    
 }

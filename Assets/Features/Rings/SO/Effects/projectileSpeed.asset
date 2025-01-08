@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5156bf05c269794bbd38316b1580c1a, type: 3}
   m_Name: projectileSpeed
   m_EditorClassIdentifier: 
-  effectName: Faster Projectile
-  type: 9
+  ringEffectName: 
+  effectType: 9
   valueType: 2
   stringValue: 
   intValue: 0
-  floatValue: 0.2
+  floatValue: 1.1
   boolValue: 0
-  scriptableObject: {fileID: 0}
+  projectileValue: {fileID: 0}
   buffValue: {fileID: 0}
   isAdjacencyBonus: 1

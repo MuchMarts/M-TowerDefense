@@ -13,16 +13,15 @@ MonoBehaviour:
   m_Name: Magic_Bolt
   m_EditorClassIdentifier: 
   projectileName: Magic Bolt
-  baseDamage: 1
-  baseSpeed: 1
-  basePierce: 1
+  damage: 1
+  speed: 20
+  pierce: 1
   isHoming: 1
   homingRadius: 3
   isTimed: 1
   timeToLive: 3
   isSplash: 0
   splashRadius: 0
-  splashDamage: 0
   isTrueDamage: 0
   buffs: []
   priority: 0

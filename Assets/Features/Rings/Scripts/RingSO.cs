@@ -7,5 +7,5 @@ public class RingSO : ScriptableObject
     public int cost;
     public float adjacencyBonus;
     public RingEffectSO[] effects;
-    public GameObject ringPrefab;
+    public GameObject prefab;
 }

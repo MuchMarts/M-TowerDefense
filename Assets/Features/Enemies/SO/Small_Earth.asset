@@ -17,5 +17,5 @@ MonoBehaviour:
   baseSpeed: 2
   basePierceArmour: 0
   baseDamageArmour: 0
-  baseKillValue: 0
+  baseKillValue: 3
   prefab: {fileID: 3593213591749145103, guid: 8cb670b4b3a387a438e4c185f6a20742, type: 3}
