@@ -1,5 +1,3 @@
-using System.Diagnostics;
-
 public class RingEffect
 {
     public string effectName;
